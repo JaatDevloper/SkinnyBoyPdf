@@ -1,0 +1,34 @@
+modules = ["python-3.11"]
+[agent]
+expertMode = true
+
+[nix]
+channel = "stable-25_05"
+packages = ["cacert", "exiftool", "freetype", "ghostscript", "glibcLocales", "gumbo", "harfbuzz", "imagemagickBig", "jbig2dec", "lcms2", "libimagequant", "libjpeg", "libjpeg_turbo", "libtiff", "libwebp", "libxcrypt", "mupdf", "netpbm", "openjpeg", "poppler_utils", "qpdf", "swig", "tcl", "tk", "xcbuild", "xcodebuild", "zlib"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "PDF Telegram Bot"
+
+[[workflows.workflow]]
+name = "PDF Telegram Bot"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python main.py"
+
+[workflows.workflow.metadata]
+outputType = "console"
+
+[deployment]
+deploymentTarget = "vm"
+run = ["python", "main.py"]
