@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 import unicodedata
 
-def KrutiDev_to_Unicode(krutidev_substring):
+
+# ✅ FUNCTION NAME FIXED (snake_case for import)
+def krutidev_to_unicode(krutidev_substring):
     if not krutidev_substring:
         return ""
 
@@ -49,7 +51,7 @@ def KrutiDev_to_Unicode(krutidev_substring):
         "ं","ँ","ः","ॅ","्","-","।"
     ]
 
-    # ---- Fix 'f' matra (ि) ----
+    # ---- Fix 'f' (ि) matra ----
     modified_substring = " " + modified_substring + " "
     while "f" in modified_substring:
         pos = modified_substring.find("f")
