@@ -2,7 +2,7 @@
 import unicodedata
 import re
 
-# Optimized mapping including punctuation fixes
+# Comprehensive mapping for Kruti Dev to Unicode
 MAPPING = {
     "ñ": "॰", "Q+Z": "QZ+", "sas": "sa", "aa": "a", ")Z": "र्द्ध", "ZZ": "Z",
     "‘": "\"", "’": "\"", "“": "'", "”": "'", "å": "०", "ƒ": "१", "„": "२",
@@ -10,7 +10,7 @@ MAPPING = {
     "¶+": "फ़्", "d+": "क़", "[+k": "ख़", "[+": "ख़्", "x+": "ग़", "T+": "ज़्",
     "t+": "ज़", "M+": "ड़", "<+": "ढ़", "Q+": "फ़", ";+": "य़", "j+": "ऱ",
     "u+": "ऩ", "Ùk": "त्त", "Ù": "त्त्", "Dr": "क्त", "–": "दृ", "—": "कृ",
-    "é": "न्न", "™": "न्न्", "=kk": "=k", "f=k": "f=", "à": "ह्न", "á": "ह्य",
+    "é": "न्न", "™": "न्न्", "=kk": "त्रा", "f=k": "त्रि", "à": "ह्न", "á": "ह्य",
     "â": "हृ", "ã": "ह्म", "ºz": "ह्र", "º": "ह्", "í": "द्द", "{k": "क्ष",
     "{": "क्ष्", "=": "त्र", "«": "त्र्", "Nî": "छ्य", "Vî": "ट्य", "Bî": "ठ्य",
     "Mî": "ड्य", "<î": "ढ्य", "|": "द्य", "K": "ज्ञ", "}": "द्व", "J": "श्र",
@@ -32,41 +32,45 @@ MAPPING = {
     "\"": "ष्", "l": "स", "Lk": "स", "L": "स्", "g": "ह", "È": "ीं", "z": "्र",
     "‚": "ॉ", "ks": "ो", "kS": "ौ", "k": "ा", "h": "ी", "q": "ु", "w": "ू",
     "`": "ृ", "s": "े", "S": "ै", "a": "ं", "¡": "ँ", "%": "ः", "W": "ॅ",
-    "~": "्", "-": "-", "A": "।", "1": "1", "2": "2", "3": "3", "4": "4", 
-    "5": "5", "6": "6", "7": "7", "8": "8", "9": "9", "0": "0", 
-    "(": "(", ")": ")", "\\": " "
+    "~": "्", "A": "।", "झ": ">", "¼": "(", "½": ")", "्ा": "", "ाे": "ो", "ाै": "ौ"
 }
 
 def krutidev_to_unicode(text: str) -> str:
     if not text:
         return ""
 
-    # Sort keys by length to prevent partial matches
+    # Sort by length to process multi-character codes first
     sorted_keys = sorted(MAPPING.keys(), key=len, reverse=True)
     
-    # 1. Standard character replacement
+    # Process the text
+    modified_text = text
+
+    # Handle the 'f' (Chhoti ee) vowel shift BEFORE general mapping
+    # This finds 'f' followed by characters and moves it after them
+    modified_text = re.sub(r'f([][<>!@#$%^&*()_=+{}:;"\'?,./a-zA-Z0-9]+)', r'\1f', modified_text)
+
+    # General Mapping
     for k in sorted_keys:
-        text = text.replace(k, MAPPING[k])
+        modified_text = modified_text.replace(k, MAPPING[k])
 
-    # 2. Fix the "Chhoti ee" (f) vowel position
-    # In Kruti Dev, 'f' comes before the letter. In Unicode, 'ि' comes after.
-    # We look for 'ि' followed by any character (including half-letters with virama)
-    # and swap them.
-    text = re.sub(r'ि([क-ह](्[क-ह])?)', r'\1ि', text)
+    # Re-replace the 'f' which is now mapped to 'ि' but in the wrong spot
+    # Logic: Move 'ि' after the consonant cluster
+    modified_text = re.sub(r'ि([क-ह]्|[क-ह])', r'\1ि', modified_text)
+    
+    # Handle Reph (Z) - Move 'र्' to the beginning of the word/cluster
+    # In Kruti Dev, 'Z' is at the end of the character cluster
+    modified_text = re.sub(r'([क-ह](्[क-ह])?)([ािीुूेैोौ]?)Z', r'र्\1\3', modified_text)
+    
+    # Clean up common Kruti Dev conversion artifacts
+    modified_text = modified_text.replace("िा", "ी")
+    modified_text = modified_text.replace("ज़्ा", "ज़ा")
 
-    # 3. Fix Reph (Z / र्) position
-    # In Kruti Dev, 'Z' is often at the end, but in Unicode it should be at the start of the cluster
-    text = re.sub(r'([क-ह](्[क-ह])?)([ािीुूेैोौ]?)्र', r'र्\1\3', text)
+    return unicodedata.normalize("NFC", modified_text).strip()
 
-    return unicodedata.normalize("NFC", text)
+def fix_file_content(content: str) -> str:
+    lines = content.split('\n')
+    fixed_lines = [krutidev_to_unicode(line) for line in lines]
+    return '\n'.join(fixed_lines)
 
-def save_unicode_txt(path: str, text: str):
-    with open(path, "w", encoding="utf-8-sig", newline="\n") as f:
-        f.write(text)
-
-# --- Test Example ---
-input_text = """1. ;fn ,d iafDr esa ,d O;fDr nk;ha vksj ls 6osa vkSj ck;ha vksj ls 8osa LFkku ij cSBk gS] rks ml iafDr esa cSBs O;fDr;ksa dh dqy la[;k Kkr dhft,\\
-(a) 13 ✅
-(b) 12"""
-
-print(krutidev_to_unicode(input_text))
+# Example Usage:
+# result = fix_file_content(your_txt_data)
