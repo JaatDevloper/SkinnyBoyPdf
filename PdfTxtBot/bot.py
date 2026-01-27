@@ -42,10 +42,13 @@ class PDFBot:
     async def __otherHandler__(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         try:
             filename = update.message.document.file_name.split(".")
-            extension = filename[len(filename)-1]
+            extension = filename[-1].lower()
+            if extension == "txt":
+                await update.message.reply_text("✅ I received your .txt file.\n\nReply to this file with <b>/txt</b> to fix Hindi font encoding.", parse_mode=constants.ParseMode.HTML)
+                return
             await update.message.reply_text(text=WRONGFILE.format(extension), parse_mode=constants.ParseMode.HTML)
-        except AttributeError as e:
-            await update.message.reply_text("Sorry Bot can't Read this file\n\nTry Sending the file with ```.pdf``` Extension",parse_mode=constants.ParseMode.MARKDOWN_V2)
+        except AttributeError:
+            pass
 
     async def __extract_text__(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         if not update.callback_query.message.document:
