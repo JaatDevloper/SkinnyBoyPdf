@@ -1,95 +1,126 @@
 # -*- coding: utf-8 -*-
+import re
 import unicodedata
 
+# -------------------------------------------------
+# KrutiDev / legacy Hindi → Unicode converter
+# -------------------------------------------------
+
+KRUTI_MAP = {
+    "Ø": "।",
+    "Ù": "‘",
+    "Ú": "’",
+    "Û": "“",
+    "Ü": "”",
+    "æ": "ं",
+    "ç": "ः",
+    "é": "अ",
+    "ê": "आ",
+    "ë": "इ",
+    "ì": "ई",
+    "í": "उ",
+    "î": "ऊ",
+    "ï": "ऋ",
+    "ð": "ए",
+    "ñ": "ऐ",
+    "ò": "ओ",
+    "ó": "औ",
+    "ô": "क",
+    "õ": "ख",
+    "ö": "ग",
+    "÷": "घ",
+    "ø": "च",
+    "ù": "छ",
+    "ú": "ज",
+    "û": "झ",
+    "ü": "ट",
+    "ý": "ठ",
+    "þ": "ड",
+    "ÿ": "ढ",
+    "À": "ण",
+    "Á": "त",
+    "Â": "थ",
+    "Ã": "द",
+    "Ä": "ध",
+    "Å": "न",
+    "Æ": "प",
+    "Ç": "फ",
+    "È": "ब",
+    "É": "भ",
+    "Ê": "म",
+    "Ë": "य",
+    "Ì": "र",
+    "Í": "ल",
+    "Î": "व",
+    "Ï": "श",
+    "Ð": "ष",
+    "Ñ": "स",
+    "Ò": "ह",
+    "Ó": "ा",
+    "Ô": "ि",
+    "Õ": "ी",
+    "Ö": "ु",
+    "×": "ू",
+    "Ø": "ृ",
+    "Ù": "े",
+    "Ú": "ै",
+    "Û": "ो",
+    "Ü": "ौ",
+    "Ý": "्",
+}
+
+# -------------------------------------------------
+# Post processing cleanup (VERY IMPORTANT)
+# -------------------------------------------------
+
+def clean_hindi_text(text: str) -> str:
+    if not text:
+        return ""
+
+    # remove duplicate halants
+    while "््" in text:
+        text = text.replace("््", "्")
+
+    # fix reph duplication
+    text = text.replace("्र्र", "्र")
+
+    # fix misplaced chhoti ee
+    text = text.replace("ि्", "्ि")
+
+    # punctuation fixes
+    text = text.replace("।।", "।")
+    text = text.replace("..", "।")
+
+    # normalize spaces
+    while "  " in text:
+        text = text.replace("  ", " ")
+
+    # clean lines (questions stay clean)
+    lines = []
+    for line in text.splitlines():
+        line = line.strip()
+        if line:
+            lines.append(line)
+
+    return "\n".join(lines)
+
+
+# -------------------------------------------------
+# MAIN FUNCTION (this is what bot imports)
+# -------------------------------------------------
 
 def krutidev_to_unicode(text: str) -> str:
     if not text:
         return ""
 
-    # ---------- STEP 1: Fix 'f' matra (ि) ----------
-    # KrutiDev: fX  → Unicode: Xि
-    chars = list(text)
-    result = []
-    i = 0
-    n = len(chars)
+    # Step 1: map characters
+    output = []
+    for ch in text:
+        output.append(KRUTI_MAP.get(ch, ch))
+    text = "".join(output)
 
-    while i < n:
-        if chars[i] == "f" and i + 1 < n:
-            result.append(chars[i + 1])
-            result.append("ि")
-            i += 2
-        else:
-            result.append(chars[i])
-            i += 1
+    # Step 2: normalize unicode
+    text = unicodedata.normalize("NFC", text)
 
-    text = "".join(result)
-
-    # ---------- STEP 2: Fix reph (Z) ----------
-    # ZX → र्X
-    chars = list(text)
-    result = []
-    i = 0
-    n = len(chars)
-
-    while i < n:
-        if chars[i] == "Z" and result:
-            # insert र् before previous character
-            prev = result.pop()
-            result.append("्र")
-            result.append(prev)
-        else:
-            result.append(chars[i])
-        i += 1
-
-    text = "".join(result)
-
-    # ---------- STEP 3: Glyph replacement (single pass) ----------
-    array_one = [
-        "ñ","Q+Z","sas","aa",")Z","ZZ","‘","’","“","”",
-        "å","ƒ","„","…","†","‡","ˆ","‰","Š","‹",
-        "¶+","d+","[+k","[+","x+","T+","t+","M+","<+","Q+",";+","j+","u+",
-        "Ùk","Ù","Dr","–","—","é","™","=kk","f=k",
-        "à","á","â","ã","ºz","º","í","{k","{","=","«",
-        "Nî","Vî","Bî","Mî","<î","|","K","}",
-        "J","Vª","Mª","<ªª","Nª","Ø","Ý","nzZ","æ","ç","Á","xz","#",":",
-        "v‚","vks","vkS","vk","v","b±","Ã","bZ","b","m","Å",",s",",","_",
-        "ô","d","Dk","D","[k","[","x","Xk","X","Ä","?k","?","³",
-        "pkS","p","Pk","P","N","t","Tk","T",">","÷","¥",
-        "ê","ë","V","B","ì","ï","M+","<+","M","<",".k",".",
-        "r","Rk","R","Fk","F",")","n","/k","èk","/","Ë","è","u","Uk","U",
-        "i","Ik","I","Q","¶","c","Ck","C","Hk","H","e","Ek","E",
-        ";","¸","j","y","Yk","Y","G","o","Ok","O",
-        "'k","'","\"k","\"","l","Lk","L","g",
-        "È","z",
-        "‚","ks","kS","k","h","q","w","`","s","S",
-        "a","¡","%","W","~","-","A"
-    ]
-
-    array_two = [
-        "॰","QZ+","sa","a","र्द्ध","Z","\"","\"","'","'",
-        "०","१","२","३","४","५","६","७","८","९",
-        "फ़्","क़","ख़","ख़्","ग़","ज़्","ज़","ड़","ढ़","फ़","य़","ऱ","ऩ",
-        "त्त","त्त्","क्त","दृ","कृ","न्न","न्न्","=k","f=",
-        "ह्न","ह्य","हृ","ह्म","ह्र","ह्","द्द","क्ष","क्ष्","त्र","त्र्",
-        "छ्य","ट्य","ठ्य","ड्य","ढ्य","द्य","ज्ञ","द्व",
-        "श्र","ट्र","ड्र","ढ्र","छ्र","क्र","फ्र","र्द्र","द्र","प्र","प्र","ग्र","रु","रू",
-        "ऑ","ओ","औ","आ","अ","ईं","ई","ई","इ","उ","ऊ","ऐ","ए","ऋ",
-        "क्क","क","क","क्","ख","ख्","ग","ग","ग्","घ","घ","घ्","ङ",
-        "चै","च","च","च्","छ","ज","ज","ज्","झ","झ्","ञ",
-        "ट्ट","ट्ठ","ट","ठ","ड्ड","ड्ढ","ड़","ढ़","ड","ढ","ण","ण्",
-        "त","त","त्","थ","थ्","द्ध","द","ध","ध","ध्","ध्","ध्","न","न","न्",
-        "प","प","प्","फ","फ्","ब","ब","ब्","भ","भ्","म","म","म्",
-        "य","य्","र","ल","ल","ल्","ळ","व","व","व्",
-        "श","श्","ष","ष्","स","स","स्","ह",
-        "ीं","्र",
-        "ॉ","ो","ौ","ा","ी","ु","ू","ृ","े","ै",
-        "ं","ँ","ः","ॅ","्","-","।"
-    ]
-
-    # Pre-build map for speed
-    replace_map = dict(zip(array_one, array_two))
-
-    for k, v in replace_map.items():
-        text = text.replace(k, v)
-
-    return unicodedata.normalize("NFC", text)
+    # Step 3: final cleanup
+    return clean_hindi_text(text)
