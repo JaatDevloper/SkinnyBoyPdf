@@ -8,4 +8,4 @@ async def extractImg(filename):
     return page
         
 if __name__=='__main__':
-    asyncio.run(extractImg("PdfTxtBot\sample.pdf"))
+    asyncio.run(extractImg(r"PdfTxtBot\sample.pdf"))
