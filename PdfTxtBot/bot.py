@@ -101,8 +101,8 @@ class PDFBot:
                 await update.message.reply_text("❌ The message you replied to has no text or file.")
                 return
             
-            from .hindi_fix import kruti_to_unicode
-            fixed_text = kruti_to_unicode(text_content)
+            from .hindi_fix import KrutiDev_to_Unicode
+            fixed_text = KrutiDev_to_Unicode(text_content)
             await update.message.reply_text(f"✅ Fixed Hindi Text:\n\n{fixed_text}")
             return
         
@@ -110,7 +110,7 @@ class PDFBot:
             await update.message.reply_text("❌ Only .txt files are supported for this command.")
             return
 
-        from .hindi_fix import kruti_to_unicode
+        from .hindi_fix import KrutiDev_to_Unicode
         await context.bot.send_chat_action(update.effective_chat.id, action=constants.ChatAction.TYPING)
         
         try:
@@ -122,7 +122,7 @@ class PDFBot:
             with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
                 content = f.read()
             
-            fixed_content = kruti_to_unicode(content)
+            fixed_content = KrutiDev_to_Unicode(content)
             
             output_path = os.path.join("PdfTxtBot", "Docs", f"fixed_{document.file_name}")
             with open(output_path, "w", encoding="utf-8") as f:

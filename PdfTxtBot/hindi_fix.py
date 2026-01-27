@@ -1,85 +1,85 @@
 # -*- coding: utf-8 -*-
 import unicodedata
 
-def kruti_to_unicode(text: str) -> str:
-    """
-    Direct Glyph-to-Unicode mapping for KrutiDev 010.
-    This bypasses transliteration libraries and maps the ASCII 
-    representation of KrutiDev characters to their Unicode equivalents.
-    """
-    if not text:
-        return text
-
-    # Standard KrutiDev 010 to Unicode Mapping Table
-    # This maps the ASCII characters in the font to actual Devanagari Unicode
-    mapping = {
-        "ñ": "!", "ò": "\"", "ó": "#", "ô": "$", "õ": "%", "ö": "&", "÷": "'", "ø": "(", "ù": ")", "ú": "*", "û": "+", "ü": ",", "ý": "-", "þ": ".", "ÿ": "/",
-        "0": "०", "1": "१", "2": "२", "3": "३", "4": "४", "5": "५", "6": "६", "7": "७", "8": "८", "9": "९",
-        "अ": "v", "आ": "vk", "इ": " b", "ई": " bZ", "उ": "m", "ऊ": " mQ", "ऋ": " ऋ", "ए": " ,", "ऐ": " vS", "ओ": "vkS", "औ": "vkS",
-        "क": "d", "ख": "[k", "ग": "x", "घ": "?" , "ङ": "³",
-        "च": "p", "छ": "N", "ज": "t", "झ": "´", "ञ": "¥",
-        "ट": "V", "ठ": "B", "ड": "M", "ढ": "<", "ण": ".k",
-        "त": "r", "थ": "Fk", "द": "n", "ध": "èk", "न": "u",
-        "प": "i", "फ": "Q", "ब": "c", "भ": "Hk", "म": "e",
-        "य": "y", "र": "j", "ल": "y", "व": "o", "श": "'k", "ष": "k", "स": "l", "ह": "g",
-        "क्ष": "{k", "त्र": "=" , "ज्ञ": "K", "श्र": "J",
-        "ा": "k", "ि": "f", "ी": "h", "ु": "q", "ू": "w", "ृ": "`", "े": "s", "ै": "S", "ो": "ks", "ौ": "kS",
-        "ं": "a", "ः": "%", "ॅ": "W", "ॉ": "kS", "्र": "z", "र्": "Z", "़": "u"
-    }
-
-    # Reverse the mapping to act as a converter (ASCII -> Unicode)
-    # The dictionary above is structured as [Unicode: ASCII] for reference, 
-    # so we need to flip it or use the correct ASCII->Unicode pairs.
+# KrutiDev to Unicode function (Adapted from provided script)
+def KrutiDev_to_Unicode(krutidev_substring):
+    if not krutidev_substring:
+        return ""
     
-    # Accurate KrutiDev 010 Mapping Table (ASCII Char -> Unicode Char)
-    kruti_map = {
-        "k": "ा", "f": "ि", "h": "ी", "q": "ु", "w": "ू", "s": "े", "S": "ै", "a": "ं", "%": "ः", "W": "ॅ", 
-        "z": "्र", "Z": "र्", "u": "़", "v": "अ", "i": "प", "e": "म", "r": "त", "u": "न", "y": "थ", "x": "ग", 
-        "c": "ब", "v": "व", "b": "इ", "n": "न", "m": "म", "w": "य", "t": "ज", "d": "क", "[": "ख", "x": "ग", 
-        "?": "घ", "p": "च", "N": "छ", "´": "झ", "¥": "ञ", "V": "ट", "B": "ठ", "M": "ड", "<": "ढ", ".": "ण", 
-        "F": "थ", "n": "द", "è": "ध", "Q": "फ", "H": "भ", "j": "र", "y": "ल", "'": "श", "k": "ष", "l": "स", 
-        "g": "ह", "{": "क्ष", "=": "त्र", "K": "ज्ञ", "J": "श्र", "0": "०", "1": "१", "2": "२", "3": "३", 
-        "4": "४", "5": "५", "6": "६", "7": "७", "8": "८", "9": "९"
-    }
-
-    # Complex KrutiDev conversion requires handling the 'i' (f) matra which comes BEFORE the consonant
-    # and the 'reph' (Z) which comes AFTER.
+    # In Python 3, strings are already unicode. 
+    # The logic below assumes krutidev_substring is a string containing KrutiDev encoded characters.
+    modified_substring = krutidev_substring
     
-    # This is a simplified but functional glyph mapping for standard KrutiDev 010
-    array_1 = ["f", "A", "q", "w", "`", "s", "S", "a", "%", "W", "Z", "z", "u", "k", "h"]
-    array_2 = ["ि", "।", "ु", "ू", "ृ", "े", "ै", "ं", "ः", "ॅ", "र्", "्र", "़", "ा", "ी"]
-
-    array_3 = ["v", "vk", " b", " bZ", "m", " mQ", " ऋ", " ,", " vS", "vks", "vkS", "d", "[k", "x", "?", "³", "p", "N", "t", "´", "¥", "V", "B", "M", "<", ".k", "r", "Fk", "n", "èk", "u", "i", "Q", "c", "Hk", "e", "y", "j", "y", "o", "'k", "k", "l", "g", "{k", "=", "K", "J"]
-    array_4 = ["अ", "आ", "इ", "ई", "उ", "ऊ", "ऋ", "ए", "ऐ", "ओ", "औ", "क", "ख", "ग", "घ", "ङ", "च", "छ", "ज", "झ", "ञ", "ट", "ठ", "ड", "ढ", "ण", "त", "थ", "द", "ध", "न", "प", "फ", "ब", "भ", "म", "य", "र", "ल", "व", "श", "ष", "स", "ह", "क्ष", "त्र", "ज्ञ", "श्र"]
-
-    processed = text
+    array_one = ["ñ","Q+Z","sas","aa",")Z","ZZ","‘","’","“","”",
+    "å",  "ƒ",  "„",   "…",   "†",   "‡",   "ˆ",   "‰",   "Š",   "‹", 
+    "¶+",   "d+", "[+k","[+", "x+",  "T+",  "t+", "M+", "<+", "Q+", ";+", "j+", "u+",
+    "Ùk", "Ù", "Dr", "–", "—","é","™","=kk","f=k",  
+    "à",   "á",    "â",   "ã",   "ºz",  "º",   "í", "{k", "{", "=",  "«",   
+    "Nî",   "Vî",    "Bî",   "Mî",   "<î", "|", "K", "}",
+    "J",   "Vª",   "Mª",  "<ªª",  "Nª",   "Ø",  "Ý", "nzZ",  "æ", "ç", "Á", "xz", "#", ":",
+    "v‚","vks",  "vkS",  "vk",    "v",  "b±", "Ã",  "bZ",  "b",  "m",  "Å",  ",s",  ",",   "_",
+    "ô",  "d", "Dk", "D", "[k", "[", "x","Xk", "X", "Ä", "?k", "?",   "³", 
+    "pkS",  "p", "Pk", "P",  "N",  "t", "Tk", "T",  ">", "÷", "¥",
+    "ê",  "ë",   "V",  "B",   "ì",   "ï", "M+", "<+", "M",  "<", ".k", ".",    
+    "r",  "Rk", "R",   "Fk", "F",  ")", "n", "/k", "èk",  "/", "Ë", "è", "u", "Uk", "U",   
+    "i",  "Ik", "I",   "Q",    "¶",  "c", "Ck",  "C",  "Hk",  "H", "e", "Ek",  "E",
+    ";",  "¸",   "j",    "y", "Yk",  "Y",  "G",  "o", "Ok", "O",
+    "'k", "'",   "\"k",  "\"",  "l", "Lk",  "L",   "g", 
+    "È", "z", 
+    "Ì", "Í", "Î",  "Ï",  "Ñ",  "Ò",  "Ó",  "Ô",   "Ö",  "Ø",  "Ù","Ük", "Ü",
+    "‚",    "ks",   "kS",   "k",  "h",    "q",   "w",   "`",    "s",    "S",
+    "a",    "¡",    "%",     "W",  "•", "·", "∙", "·", "~j",  "~", "\\","+"," ः",
+    "^", "*",  "Þ", "ß", "(", "¼", "½", "¿", "À", "¾", "A", "-", "&", "&", "Œ", "]","~ ","@"]
     
-    # Replace strings in array_3 with array_4
-    for i in range(len(array_3)):
-        processed = processed.replace(array_3[i], array_4[i])
-        
-    # Replace characters in array_1 with array_2
-    for i in range(len(array_1)):
-        processed = processed.replace(array_1[i], array_2[i])
-
-    # Fix the 'i' matra position (KrutiDev puts 'f' before the consonant)
-    # Example: 'fi' -> 'पि' (p + i)
-    # This is a common pattern in KrutiDev: f + [consonant] -> [consonant] + ि
-    import re
-    # Match 'ि' followed by any Devanagari character and move it after
-    processed = re.sub(r'ि(.)', r'\1ि', processed)
+    array_two = ["॰","QZ+","sa","a","र्द्ध","Z","\"","\"","'","'",
+    "०",  "१",  "२",  "३",     "४",   "५",  "६",   "७",   "८",   "९",   
+    "फ़्",  "क़",  "ख़", "ख़्",  "ग़", "ज़्", "ज़",  "ड़",  "ढ़",   "फ़",  "य़",  "ऱ",  "ऩ",    
+    "त्त", "त्त्", "क्त",  "दृ",  "कृ","न्न","न्न्","=k","f=",
+    "ह्न",  "ह्य",  "हृ",  "ह्म",  "ह्र",  "ह्",   "द्द",  "क्ष", "क्ष्", "त्र", "त्र्", 
+    "छ्य",  "ट्य",  "ठ्य",  "ड्य",  "ढ्य", "द्य", "ज्ञ", "द्व",
+    "श्र",  "ट्र",    "ड्र",    "ढ्र",    "छ्र",   "क्र",  "फ्र", "र्द्र",  "द्र",   "प्र", "प्र",  "ग्र", "रु",  "रू",
+    "ऑ",   "ओ",  "औ",  "आ",   "अ", "ईं", "ई",  "ई",   "इ",  "उ",   "ऊ",  "ऐ",  "ए", "ऋ",
+    "क्क", "क", "क", "क्", "ख", "ख्", "ग", "ग", "ग्", "घ", "घ", "घ्", "ङ",
+    "चै",  "च", "च", "च्", "छ", "ज", "ज", "ज्",  "झ",  "झ्", "ञ",
+    "ट्ट",   "ट्ठ",   "ट",   "ठ",   "ड्ड",   "ड्ढ",  "ड़", "ढ़", "ड",   "ढ", "ण", "ण्",   
+    "त", "त", "त्", "थ", "थ्",  "द्ध",  "द", "ध", "ध", "ध्", "ध्", "ध्", "न", "न", "न्",    
+    "प", "प", "प्",  "फ", "फ्",  "ब", "ब", "ब्",  "भ", "भ्",  "म",  "म", "म्",  
+    "य", "य्",  "र", "ल", "ल", "ल्",  "ळ",  "व", "व", "व्",   
+    "श", "श्",  "ष", "ष्", "स", "स", "स्", "ह", 
+    "ीं", "्र",    
+    "द्द", "ट्ट","ट्ठ","ड्ड","कृ","भ","्य","ड्ढ","झ्","क्र","त्त्","श","श्",
+    "ॉ",  "ो",   "ौ",   "ा",   "ी",   "ु",   "ू",   "ृ",   "े",   "ै",
+    "ं",   "ँ",   "ः",   "ॅ",  "ऽ", "ऽ", "ऽ", "ऽ", "्र",  "्", "?", "़",":",
+    "‘",   "’",   "“",   "”",  ";",  "(",    ")",   "{",    "}",   "=", "।", ".", "-",  "µ", "॰", ",","् ","/"]
     
-    # Fix 'र्' (Z) which often needs to be moved to the correct position over the consonant
-    processed = re.sub(r'(.)र्', r'र्\1', processed)
-
-    # Final cleanup with NFC normalization
-    final_text = unicodedata.normalize("NFC", processed)
+    array_one_length = len(array_one)
     
-    # Specific common word fixes for things that might have broken in mapping
-    corrections = {
-        "ाे": "ो", "ाै": "ौ", "िा": "ा", "अो": "ओ", "नषो": "कुल", "ऐो": "एक"
-    }
-    for k, v in corrections.items():
-        final_text = final_text.replace(k, v)
-
-    return final_text
+    # Specialty characters
+    
+    # Move "f"  to correct position and replace
+    modified_substring = "  " + modified_substring + "  "
+    position_of_f = modified_substring.rfind("f")
+    while (position_of_f != -1):    
+        modified_substring = modified_substring[:position_of_f] + modified_substring[position_of_f+1] + modified_substring[position_of_f] +  modified_substring[position_of_f+2:]
+        position_of_f = modified_substring.rfind("f",0, position_of_f - 1 ) # search for f ahead of the current position.
+    modified_substring = modified_substring.replace("f","ि")
+    modified_substring = modified_substring.strip()
+    
+    # Move "half R"  to correct position and replace
+    modified_substring = "  " + modified_substring + "  "
+    position_of_r = modified_substring.find("Z")
+    set_of_matras =  ["‚",    "ks",   "kS",   "k",     "h",    "q",   "w",   "`",    "s",    "S", "a",    "¡",    "%",     "W",   "·",   "~ ", "~"]
+    while (position_of_r != -1):    
+        modified_substring = modified_substring.replace("Z","",1)
+        if modified_substring[position_of_r - 1] in set_of_matras:
+            modified_substring = modified_substring[:position_of_r - 2] + "j~" + modified_substring[position_of_r - 2:]
+        else:
+            modified_substring = modified_substring[:position_of_r - 1] + "j~" + modified_substring[position_of_r - 1:]
+        position_of_r = modified_substring.find("Z")
+    modified_substring = modified_substring.strip()
+    
+    # Replace ASCII with Unicode
+    for input_symbol_idx in range(0, array_one_length):
+        modified_substring = modified_substring.replace(array_one[input_symbol_idx ] , array_two[input_symbol_idx] )
+    
+    return unicodedata.normalize("NFC", modified_substring)
