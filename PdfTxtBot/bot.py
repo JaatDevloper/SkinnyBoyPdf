@@ -1,57 +1,57 @@
 import os
-import telegram
-from telegram import BotCommand, InlineKeyboardButton, InlineKeyboardMarkup, Update, constants
-from telegram.ext import CommandHandler, MessageHandler, filters, ContextTypes, ApplicationBuilder, CallbackQueryHandler
-
-# Local Imports
-from .hindi_fix import krutidev_to_unicode, fix_file_content
+from telegram import Update
+from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
+from hindi_fix import fix_file_content
 
 TOKEN = "YOUR_BOT_TOKEN_HERE"
 
-class PDFBot:
-    def __init__(self, TOKEN: str) -> None:
-        self.app = ApplicationBuilder().token(TOKEN).build()
-        self.app.add_handler(CommandHandler("start", self.__start__))
-        self.app.add_handler(CommandHandler("txt", self.__txt_fix_handler__))
-        self.app.add_handler(MessageHandler(filters.Document.ALL, self.__fileHandler__))
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("👋 Hello! Send your .txt file and reply with /txt to fix encoding.")
 
-    async def __start__(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-        await update.message.reply_text("नमस्ते! अपनी Krutidev .txt फाइल भेजें और फिर उसे /txt के साथ रिप्लाई करें।")
+async def txt_fix_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if not update.message.reply_to_message or not update.message.reply_to_message.document:
+        await update.message.reply_text("❌ Please reply to a .txt file with /txt.")
+        return
 
-    async def __fileHandler__(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-        if update.message.document.file_name.endswith(".txt"):
-            await update.message.reply_text("✅ फाइल मिल गई! अब इस फाइल को **Reply** करें और लिखें: `/txt`", parse_mode="Markdown")
+    doc = update.message.reply_to_message.document
+    input_file = f"in_{doc.file_id}.txt"
+    output_file = f"Fixed_{doc.file_name}"
 
-    async def __txt_fix_handler__(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-        if not update.message.reply_to_message or not update.message.reply_to_message.document:
-            await update.message.reply_text("❌ कृपया फाइल को Reply करके /txt लिखें।")
-            return
-
-        reply = update.message.reply_to_message
-        doc = reply.document
-        
-        # Download and Process
+    try:
+        # Downloading
         file = await context.bot.get_file(doc.file_id)
-        input_path = f"input_{doc.file_name}"
-        output_path = f"Fixed_{doc.file_name}"
-        
-        await file.download_to_drive(input_path)
+        await file.download_to_drive(input_file)
 
-        with open(input_path, "r", encoding="utf-8", errors="ignore") as f:
-            content = f.read()
+        # Reading with safety
+        try:
+            with open(input_file, "r", encoding="utf-8") as f:
+                content = f.read()
+        except:
+            with open(input_file, "r", encoding="latin-1") as f:
+                content = f.read()
 
-        fixed_content = fix_file_content(content)
+        fixed_data = fix_file_content(content)
 
-        with open(output_path, "w", encoding="utf-8") as f:
-            f.write(fixed_content)
+        # Writing Fixed Content
+        with open(output_file, "w", encoding="utf-8") as f:
+            f.write(fixed_data)
 
-        await update.message.reply_document(document=open(output_path, "rb"), caption="✨ फोंट फिक्स कर दिया गया है!")
+        # Uploading
+        await update.message.reply_document(
+            document=open(output_file, "rb"), 
+            caption="✅ Hindi Unicode Fixed! (English preserved)"
+        )
 
-        # Cleanup
-        os.remove(input_path)
-        os.remove(output_path)
+    except Exception as e:
+        await update.message.reply_text(f"⚠️ Error: {e}")
+    finally:
+        if os.path.exists(input_file): os.remove(input_file)
+        if os.path.exists(output_file): os.remove(output_file)
 
 if __name__ == "__main__":
-    bot = PDFBot(TOKEN)
-    bot.app.run_polling()
+    app = ApplicationBuilder().token(TOKEN).build()
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("txt", txt_fix_handler))
+    print("Bot is running...")
+    app.run_polling()
     
