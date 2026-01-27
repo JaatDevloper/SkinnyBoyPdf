@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from PdfTxtBot import PDFBot
 from config import TOKEN
 

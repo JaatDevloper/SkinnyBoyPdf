@@ -22,3 +22,5 @@ sniffio
 tomli
 PyMuPDF
 pdf2jpg
+aksharamukha
+indic-transliteration
