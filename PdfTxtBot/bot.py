@@ -127,12 +127,15 @@ class PDFBot:
             output_path = os.path.join("PdfTxtBot", "Docs", f"fixed_{document.file_name}")
             with open(output_path, "w", encoding="utf-8") as f:
                 f.write(fixed_content)
-                
-            await update.message.reply_document(
-                document=open(output_path, "rb"), 
-                caption="✅ Fixed Hindi Text File (Kruti Dev to Unicode)"
-            )
-            os.remove(output_path)
+            
+            with open(output_path, "rb") as output_file:
+                await update.message.reply_document(
+                    document=output_file, 
+                    caption="✅ Fixed Hindi Text File (Kruti Dev to Unicode)"
+                )
+            
+            if os.path.exists(output_path):
+                os.remove(output_path)
         except Exception as e:
             await update.message.reply_text(f"❌ Error processing file: {str(e)}")
         finally:

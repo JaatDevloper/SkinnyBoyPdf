@@ -11,13 +11,21 @@ def krutidev_to_unicode(text: str) -> str:
     # -----------------------------
     # STEP 1: Fix "f" (ि) positioning
     # -----------------------------
-    while "f" in s:
-        i = s.find("f")
-        if i > 0:
-            s = s[:i] + s[i+1] + "f" + s[i+2:]
+    result = []
+    i = 0
+    while i < len(s):
+        if s[i] == 'f':
+            if i + 1 < len(s):
+                result.append(s[i + 1])
+                result.append('ि')
+                i += 2
+            else:
+                result.append('ि')
+                i += 1
         else:
-            break
-    s = s.replace("f", "ि")
+            result.append(s[i])
+            i += 1
+    s = ''.join(result)
 
     # -----------------------------
     # STEP 2: Fix reph (Z → ्र)
@@ -26,10 +34,12 @@ def krutidev_to_unicode(text: str) -> str:
     while "Z" in s:
         i = s.find("Z")
         s = s.replace("Z", "", 1)
-        if i > 1 and s[i-1] in matras:
+        if i > 1 and (i - 1) < len(s) and s[i-1] in matras:
             s = s[:i-2] + "्र" + s[i-2:]
-        else:
+        elif i > 0:
             s = s[:i-1] + "्र" + s[i-1:]
+        else:
+            s = "्र" + s
 
     # -----------------------------
     # STEP 3: KrutiDev → Unicode map
