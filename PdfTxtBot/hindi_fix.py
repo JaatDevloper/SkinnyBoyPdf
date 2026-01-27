@@ -1,195 +1,86 @@
 # -*- coding: utf-8 -*-
 import unicodedata
 
-
-def krutidev_to_unicode(text: str) -> str:
-    if not text:
+def KrutiDev_to_Unicode(krutidev_substring):
+    if not krutidev_substring:
         return ""
 
-    s = " " + text + " "
+    modified_substring = krutidev_substring
 
-    # -----------------------------
-    # STEP 1: Fix "f" (ि) positioning
-    # -----------------------------
-    result = []
-    i = 0
-    while i < len(s):
-        if s[i] == 'f':
-            if i + 1 < len(s):
-                result.append(s[i + 1])
-                result.append('ि')
-                i += 2
-            else:
-                result.append('ि')
-                i += 1
+    array_one = [
+        "ñ","Q+Z","sas","aa",")Z","ZZ","‘","’","“","”",
+        "å","ƒ","„","…","†","‡","ˆ","‰","Š","‹",
+        "¶+","d+","[+k","[+","x+","T+","t+","M+","<+","Q+",";+","j+","u+",
+        "Ùk","Ù","Dr","–","—","é","™","=kk","f=k",
+        "à","á","â","ã","ºz","º","í","{k","{","=","«",
+        "Nî","Vî","Bî","Mî","<î","|","K","}",
+        "J","Vª","Mª","<ªª","Nª","Ø","Ý","nzZ","æ","ç","Á","xz","#",":",
+        "v‚","vks","vkS","vk","v","b±","Ã","bZ","b","m","Å",",s",",","_",
+        "ô","d","Dk","D","[k","[","x","Xk","X","Ä","?k","?","³",
+        "pkS","p","Pk","P","N","t","Tk","T",">","÷","¥",
+        "ê","ë","V","B","ì","ï","M+","<+","M","<",".k",".",
+        "r","Rk","R","Fk","F",")","n","/k","èk","/","Ë","è","u","Uk","U",
+        "i","Ik","I","Q","¶","c","Ck","C","Hk","H","e","Ek","E",
+        ";","¸","j","y","Yk","Y","G","o","Ok","O",
+        "'k","'","\"k","\"","l","Lk","L","g",
+        "È","z",
+        "‚","ks","kS","k","h","q","w","`","s","S",
+        "a","¡","%","W","~","-","A"
+    ]
+
+    array_two = [
+        "॰","QZ+","sa","a","र्द्ध","Z","\"","\"","'","'",
+        "०","१","२","३","४","५","६","७","८","९",
+        "फ़्","क़","ख़","ख़्","ग़","ज़्","ज़","ड़","ढ़","फ़","य़","ऱ","ऩ",
+        "त्त","त्त्","क्त","दृ","कृ","न्न","न्न्","=k","f=",
+        "ह्न","ह्य","हृ","ह्म","ह्र","ह्","द्द","क्ष","क्ष्","त्र","त्र्",
+        "छ्य","ट्य","ठ्य","ड्य","ढ्य","द्य","ज्ञ","द्व",
+        "श्र","ट्र","ड्र","ढ्र","छ्र","क्र","फ्र","र्द्र","द्र","प्र","प्र","ग्र","रु","रू",
+        "ऑ","ओ","औ","आ","अ","ईं","ई","ई","इ","उ","ऊ","ऐ","ए","ऋ",
+        "क्क","क","क","क्","ख","ख्","ग","ग","ग्","घ","घ","घ्","ङ",
+        "चै","च","च","च्","छ","ज","ज","ज्","झ","झ्","ञ",
+        "ट्ट","ट्ठ","ट","ठ","ड्ड","ड्ढ","ड़","ढ़","ड","ढ","ण","ण्",
+        "त","त","त्","थ","थ्","द्ध","द","ध","ध","ध्","ध्","ध्","न","न","न्",
+        "प","प","प्","फ","फ्","ब","ब","ब्","भ","भ्","म","म","म्",
+        "य","य्","र","ल","ल","ल्","ळ","व","व","व्",
+        "श","श्","ष","ष्","स","स","स्","ह",
+        "ीं","्र",
+        "ॉ","ो","ौ","ा","ी","ु","ू","ृ","े","ै",
+        "ं","ँ","ः","ॅ","्","-","।"
+    ]
+
+    # ---- Fix 'f' matra (ि) ----
+    modified_substring = " " + modified_substring + " "
+    while "f" in modified_substring:
+        pos = modified_substring.find("f")
+        if pos > 0:
+            modified_substring = (
+                modified_substring[:pos]
+                + modified_substring[pos+1]
+                + "f"
+                + modified_substring[pos+2:]
+            )
         else:
-            result.append(s[i])
-            i += 1
-    s = ''.join(result)
+            break
+    modified_substring = modified_substring.replace("f", "ि").strip()
 
-    # -----------------------------
-    # STEP 2: Fix reph (Z → ्र)
-    # -----------------------------
-    matras = "ािीुूृेैोौंःँ"
-    while "Z" in s:
-        i = s.find("Z")
-        s = s.replace("Z", "", 1)
-        if i > 1 and (i - 1) < len(s) and s[i-1] in matras:
-            s = s[:i-2] + "्र" + s[i-2:]
-        elif i > 0:
-            s = s[:i-1] + "्र" + s[i-1:]
-        else:
-            s = "्र" + s
+    # ---- Fix reph (Z) ----
+    modified_substring = " " + modified_substring + " "
+    while "Z" in modified_substring:
+        pos = modified_substring.find("Z")
+        modified_substring = modified_substring.replace("Z", "", 1)
+        if pos > 1:
+            modified_substring = (
+                modified_substring[:pos-1]
+                + "्र"
+                + modified_substring[pos-1:]
+            )
+    modified_substring = modified_substring.strip()
 
-    # -----------------------------
-    # STEP 3: KrutiDev → Unicode map
-    # (sorted by length DESC to avoid partial replace bugs)
-    # -----------------------------
-    mapping = {
-        ";कद्ध": "(घ)",
-        ";बद्ध": "(ग)",
-        ";इद्ध": "(ख)",
-        ";ंद्ध": "(क)",
+    # ---- Replace KrutiDev glyphs ----
+    for i in range(len(array_one)):
+        modified_substring = modified_substring.replace(
+            array_one[i], array_two[i]
+        )
 
-        "Q+Z": "QZ+",
-        "ZZ": "Z",
-
-        "v‚": "ऑ",
-        "vks": "ओ",
-        "vkS": "औ",
-        "vk": "आ",
-        "v": "अ",
-
-        "b±": "ईं",
-        "Ã": "ई",
-        "bZ": "ई",
-        "b": "इ",
-
-        "m": "उ",
-        "Å": "ऊ",
-
-        ",s": "ऐ",
-        ",": "ए",
-
-        "d": "क",
-        "Dk": "क",
-        "D": "क्",
-
-        "[k": "ख",
-        "[": "ख्",
-
-        "x": "ग",
-        "Xk": "ग",
-        "X": "ग्",
-
-        "?k": "घ",
-        "?": "घ्",
-
-        "p": "च",
-        "Pk": "च",
-        "P": "च्",
-
-        "N": "छ",
-
-        "t": "ज",
-        "Tk": "ज",
-        "T": "ज्",
-
-        ">": "झ",
-
-        "V": "ट",
-        "B": "ठ",
-        "M": "ड",
-        "<": "ढ",
-        ".k": "ण",
-
-        "r": "त",
-        "Rk": "त",
-        "R": "त्",
-
-        "Fk": "थ",
-        "F": "थ्",
-
-        "n": "द",
-        "/k": "ध",
-        "/": "ध्",
-
-        "u": "न",
-        "Uk": "न",
-        "U": "न्",
-
-        "i": "प",
-        "Ik": "प",
-        "I": "प्",
-
-        "Q": "फ",
-        "c": "ब",
-        "Ck": "ब",
-        "C": "ब्",
-
-        "Hk": "भ",
-        "H": "भ्",
-
-        "e": "म",
-        "Ek": "म",
-        "E": "म्",
-
-        ";": "य",
-        "j": "र",
-        "y": "ल",
-        "Yk": "ल",
-        "Y": "ल्",
-
-        "G": "ळ",
-
-        "o": "व",
-        "Ok": "व",
-        "O": "व्",
-
-        "'k": "श",
-        "'": "श्",
-
-        "\"k": "ष",
-        "\"": "ष्",
-
-        "l": "स",
-        "Lk": "स",
-        "L": "स्",
-
-        "g": "ह",
-
-        "k": "ा",
-        "h": "ी",
-        "q": "ु",
-        "w": "ू",
-        "`": "ृ",
-        "s": "े",
-        "S": "ै",
-
-        "a": "ं",
-        "¡": "ँ",
-        "%": "ः",
-
-        "~": "्",
-        "-": "-",
-        "=": "=",
-        "A": "।"
-    }
-
-    for k in sorted(mapping, key=len, reverse=True):
-        s = s.replace(k, mapping[k])
-
-    # -----------------------------
-    # STEP 4: Normalize Unicode
-    # -----------------------------
-    s = unicodedata.normalize("NFC", s)
-
-    return s.strip()
-
-
-# -----------------------------
-# TEST
-# -----------------------------
-if __name__ == "__main__":
-    sample = ";ंद्ध ₹ 6150\n;इद्ध ₹ 7687.5\n;बद्ध ₹ 4612.5\n;कद्ध ₹ 3075"
-    print(krutidev_to_unicode(sample))
+    return unicodedata.normalize("NFC", modified_substring)
