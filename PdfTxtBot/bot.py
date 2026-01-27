@@ -1,12 +1,14 @@
 import os
-from telegram import BotCommand, InlineKeyboardButton, InlineKeyboardMarkup, InputMediaDocument, InputMediaPhoto, Update, constants
 import telegram
+from telegram import BotCommand, InlineKeyboardButton, InlineKeyboardMarkup, InputMediaDocument, Update, constants
 from telegram.ext import CommandHandler, MessageHandler, filters, ContextTypes, ApplicationBuilder, CallbackQueryHandler
-from .messages import *
+
+# Local Imports
+from .messages import START_TEXT, HELPTEXT, ERRORTEXT, WRONGFILE
 from .extracter import TextExtractor
 from .ImageExtract import extractImg
 from PdfTxtBot import messages
-
+from .hindi_fix import krutidev_to_unicode, fix_file_content
 
 class PDFBot:
     def __init__(self, TOKEN: str) -> None:
@@ -19,7 +21,7 @@ class PDFBot:
         self.app.add_handler(MessageHandler(filters=filters.Document.ALL & ~filters.COMMAND, callback=self.__otherHandler__))
         self.app.add_handler(CallbackQueryHandler(self.__extract_text__))
 
-        # ✅ FIX: prevent infinite loop & CPU spike
+        # ✅ Prevent infinite loop & CPU spike
         self.app.add_handler(MessageHandler(
             filters=filters.TEXT & ~filters.COMMAND,
             callback=self.__handler__
@@ -38,9 +40,15 @@ class PDFBot:
         await update.message.reply_text(text=ERRORTEXT)
 
     async def __fileHandler__(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-        keyboard = [[InlineKeyboardButton(text="Extract Text 📋", callback_data="Extract")], [
-            InlineKeyboardButton(text="Get Images 📷", callback_data="Img")]]
-        await update.message.reply_document(document=update.message.document, caption="Click On 👇 Extract Button to Get Text", reply_markup=InlineKeyboardMarkup(keyboard))
+        keyboard = [
+            [InlineKeyboardButton(text="Extract Text 📋", callback_data="Extract")],
+            [InlineKeyboardButton(text="Get Images 📷", callback_data="Img")]
+        ]
+        await update.message.reply_document(
+            document=update.message.document, 
+            caption="Click On 👇 Extract Button to Get Text", 
+            reply_markup=InlineKeyboardMarkup(keyboard)
+        )
 
     async def __otherHandler__(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         try:
@@ -61,15 +69,19 @@ class PDFBot:
             await update.callback_query.answer("Error: No document found.", show_alert=True)
             return
         
-        filename = os.path.join("PdfTxtBot", "Docs", "file"+str(update.effective_chat.id)+".pdf")
+        docs_dir = os.path.join("PdfTxtBot", "Docs")
+        os.makedirs(docs_dir, exist_ok=True)
+        
+        filename = os.path.join(docs_dir, "file"+str(update.effective_chat.id)+".pdf")
         id = update.callback_query.message.document.file_id
         name = update.callback_query.message.document.file_name.split(".")[0]+".txt"
+        
         data = await context.bot.get_file(file_id=id)
         await data.download_to_drive(custom_path=filename)
         await context.bot.answer_callback_query(update.callback_query.id, text="Downloading.....")
 
         if update.callback_query.data == "Extract":
-            txtfilename = os.path.join("PdfTxtBot", "Docs", "file" + str(update.effective_chat.id)+".txt")
+            txtfilename = os.path.join(docs_dir, "file" + str(update.effective_chat.id)+".txt")
             txt = TextExtractor(filename=filename)
             with open(txtfilename, "w", encoding="utf-8") as f:
                 f.write(txt.extract)
@@ -89,13 +101,12 @@ class PDFBot:
                 )
             except telegram.error.BadRequest as bd:
                 if bd.message == "File must be non-empty":
-                    await update.callback_query.delete_message()
                     await update.callback_query.message.reply_text(
                         messages.SCANFILE.format(update.effective_user.first_name)
                     )
 
-            os.remove(txtfilename)
-            os.remove(filename)
+            if os.path.exists(txtfilename): os.remove(txtfilename)
+            if os.path.exists(filename): os.remove(filename)
 
         elif update.callback_query.data == "Img":
             data = await extractImg(filename)
@@ -117,10 +128,11 @@ class PDFBot:
                         update.effective_chat.id,
                         text="Some Error Occurred ❗"
                     )
-                os.remove(files)
+                if os.path.exists(files): os.remove(files)
 
-            os.removedirs(os.path.join(f"{filename}_dir"))
-            os.remove(filename)
+            img_dir = os.path.join(f"{filename}_dir")
+            if os.path.exists(img_dir): os.removedirs(img_dir)
+            if os.path.exists(filename): os.remove(filename)
 
     async def __txt_fix_handler__(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         if not update.message.reply_to_message:
@@ -130,57 +142,59 @@ class PDFBot:
             return
 
         document = update.message.reply_to_message.document
+        
+        # Process Raw Text Message
         if not document:
             text_content = update.message.reply_to_message.text
             if not text_content:
                 await update.message.reply_text("❌ The message you replied to has no text or file.")
                 return
             
-            from .hindi_fix import krutidev_to_unicode
             fixed_text = krutidev_to_unicode(text_content)
             await update.message.reply_text(f"✅ Fixed Hindi Text:\n\n{fixed_text}")
             return
         
+        # Process .txt File
         if not document.file_name.lower().endswith(".txt"):
             await update.message.reply_text("❌ Only .txt files are supported for this command.")
             return
 
-        from .hindi_fix import krutidev_to_unicode
         await context.bot.send_chat_action(update.effective_chat.id, action=constants.ChatAction.TYPING)
 
         try:
             file = await context.bot.get_file(document.file_id)
-            os.makedirs(os.path.join("PdfTxtBot", "Docs"), exist_ok=True)
-            file_path = os.path.join(
-                "PdfTxtBot", "Docs",
-                f"fix_{update.effective_chat.id}_{document.file_name}"
-            )
+            docs_dir = os.path.join("PdfTxtBot", "Docs")
+            os.makedirs(docs_dir, exist_ok=True)
+            
+            file_path = os.path.join(docs_dir, f"temp_{update.effective_chat.id}_{document.file_name}")
             await file.download_to_drive(custom_path=file_path)
 
             with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
                 content = f.read()
 
-            fixed_content = krutidev_to_unicode(content)
+            # Apply optimized Hindi fix logic
+            fixed_content = fix_file_content(content)
 
-            output_path = os.path.join(
-                "PdfTxtBot", "Docs",
-                f"fixed_{document.file_name}"
-            )
+            output_path = os.path.join(docs_dir, f"Fixed_{document.file_name}")
             with open(output_path, "w", encoding="utf-8") as f:
                 f.write(fixed_content)
 
             with open(output_path, "rb") as output_file:
                 await update.message.reply_document(
                     document=output_file,
-                    caption="✅ Fixed Hindi Text File (Kruti Dev to Unicode)"
+                    caption=f"✅ Fixed Hindi: {document.file_name}\n(Kruti Dev ➔ Unicode)"
                 )
-
-            if os.path.exists(output_path):
-                os.remove(output_path)
 
         except Exception as e:
             await update.message.reply_text(f"❌ Error processing file: {str(e)}")
 
         finally:
+            # Final Cleanup
             if 'file_path' in locals() and os.path.exists(file_path):
                 os.remove(file_path)
+            if 'output_path' in locals() and os.path.exists(output_path):
+                os.remove(output_path)
+
+    def run(self):
+        self.app.run_polling()
+        
