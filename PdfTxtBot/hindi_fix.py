@@ -4,45 +4,53 @@ def krutidev_to_unicode(text):
     if not text:
         return ""
 
-    # 1. SPECIAL REPLACEMENTS (Specific to your text patterns)
-    # Kruti Dev में 'f' (ि) अक्षर से पहले आता है, इसे बाद में ले जाना (e.g., fdy -> dyf)
-    text = re.sub(r'f([a-zA-Z0-9])', r'\1f', text)
-    # आधे अक्षरों को संभालना (e.g., dh -> hd)
-    text = re.sub(r'([a-zA-Z])h', r'h\1', text)
-
-    # 2. MAPPING TABLE
+    # 1. CHARACTER MAPPING TABLE (KrutiDev 010 to Unicode)
     mapping = {
-        'k': 'ा', 'i': 'ी', 'f': 'ि', 'u': 'ु', 'Q': 'ू', 's': 'ए', 'S': 'ै', 'a': 'अ', 'v': 'अ',
-        'd': 'क', 'E': 'क', 'D': 'क', 'e': 'म', 'r': 'त', 't': 'ज', 'y': 'ब', 'n': 'न', 'L': 'न',
-        'G': 'ह', 'g': 'ह', 'J': 'र', 'j': 'र', 'O': 'प', 'I': 'प', 'P': 'च', 'p': 'च', 'c': 'स',
-        'z': 'भ', 'Z': 'भ', 'x': 'य', 'X': 'य', 'V': 'ट', 'B': 'ब', 'N': 'न', 'M': 'ा', 'H': 'ी',
-        'U': 'ु', 'Y': 'ब', 'R': 'त', 'F': 'त', 'K': 'ा', 'w': 'ाँ', 'W': 'ाँ', 'q': 'ु',
-        '1': '१', '2': '२', '3': '३', '4': '४', '5': '५', '6': '६', '7': '७', '8': '८', '9': '९', '0': '०',
+        'v': 'अ', 'k': 'ा', 'i': 'ी', 'f': 'ि', 'u': 'ु', 'Q': 'ू', 's': 'ए', 'S': 'ै',
+        'd': 'क', 'E': 'ख्', 'D': 'क', 'e': 'म', 'r': 'त', 't': 'ज', 'y': 'ब', 'n': 'न',
+        'G': 'ह', 'g': 'ह', 'J': 'र', 'j': 'र', 'O': 'व्', 'I': 'प्', 'P': 'च्', 'p': 'च',
+        'c': 'स', 'z': 'भ', 'Z': 'भ', 'x': 'य', 'X': 'य', 'V': 'ट', 'B': 'ब', 'N': 'न',
+        'M': 'ा', 'H': 'ी', 'U': 'ु', 'Y': 'ब', 'R': 'त', 'F': 'त', 'K': 'ा', 'w': 'ाँ',
+        'q': 'ु', 'W': 'ाँ', 'h': '्', 'j': 'र', 'l': 'स', 'o': 'व', 'L': 'न',
+        'm': 'इ', 'n': 'न', 'p': 'च', 'r': 'त', 's': 'ए', 't': 'ज', 'v': 'अ', 'y': 'ब',
         '[': 'ृ', ']': '।', 'Ù': 'ू', 'Ø': '्र', '¡': 'ी', 'ä': 'ि', 'ाे': 'ो', 'ाै': 'ौ',
-        '¼': '(', '½': ')', '†': 'ु', 'ˆ': 'ृ', 'ा': 'ा', 'ं': 'ं', 'ः': 'ः', '़': '़', 'ण्': '.'
+        '¼': '(', '½': ')', '†': 'ु', 'ˆ': 'ृ', 'A': 'ा', 'ं': 'ं', 'ः': 'ः', '़': '़',
+        '्ा': 'ा', 'ीं': 'ीं', 'ks': 'ो', 'kS': 'ौ', 'ीं': 'ीं', 'अा': 'आ'
     }
 
-    # 3. TRANSFORMATION LOOP
-    res = ""
-    i = 0
-    while i < len(text):
-        char = text[i]
-        # 'h' indicates half letter in Kruti Dev logic
-        if char == 'h' and i + 1 < len(text):
-            next_char = mapping.get(text[i+1], text[i+1])
-            res += next_char + '्'
-            i += 2
-        else:
-            res += mapping.get(char, char)
-            i += 1
+    # 2. SEPARATING ENGLISH AND HINDI
+    # Hum sirf un words ko fix karenge jinme KrutiDev ke hindi characters hain
+    words = text.split(' ')
+    fixed_words = []
 
-    # 4. FINAL CLEANUP (Merging common Hindi mistakes)
-    res = res.replace('अा', 'आ').replace('ाे', 'ो').replace('ाै', 'ौ')
-    res = res.replace('ि्', 'ि').replace('्ि', 'ि')
-    # Fixing common formatting like 'प्र' (ीभ)
-    res = res.replace('ीभ', 'प्र')
-    
-    return res
+    for word in words:
+        # Check if word contains KrutiDev patterns (like 'f' at start or specific Kruti symbols)
+        # English words like "respect", "must", "the" etc. won't match common Kruti shifting
+        
+        # Fixing Matra Shifting (f+d -> df)
+        temp_word = re.sub(r'f([a-zA-Z])', r'\1f', word)
+        temp_word = re.sub(r'i([a-zA-Z])', r'\1i', temp_word)
+
+        # Transliteration
+        new_word = ""
+        is_hindi = False
+        for char in temp_word:
+            if char in mapping:
+                new_word += mapping[char]
+                # Agar koi bhi mapped character mila, matlab ye hindi word hai
+                if char not in ' ().-0123456789': 
+                    is_hindi = True
+            else:
+                new_word += char
+        
+        # Cleanup
+        cleanup = {'ाे': 'ो', 'ाै': 'ौ', 'ेा': 'ो', '्ा': 'ा', 'िा': 'ाि', 'T': 'ा'}
+        for old, new in cleanup.items():
+            new_word = new_word.replace(old, new)
+        
+        fixed_words.append(new_word)
+
+    return ' '.join(fixed_words)
 
 def fix_file_content(content):
     lines = content.split('\n')
