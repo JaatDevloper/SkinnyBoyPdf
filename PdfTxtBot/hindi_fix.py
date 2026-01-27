@@ -2,13 +2,48 @@
 import unicodedata
 
 
-# ✅ FUNCTION NAME FIXED (snake_case for import)
-def krutidev_to_unicode(krutidev_substring):
-    if not krutidev_substring:
+def krutidev_to_unicode(text: str) -> str:
+    if not text:
         return ""
 
-    modified_substring = krutidev_substring
+    # ---------- STEP 1: Fix 'f' matra (ि) ----------
+    # KrutiDev: fX  → Unicode: Xि
+    chars = list(text)
+    result = []
+    i = 0
+    n = len(chars)
 
+    while i < n:
+        if chars[i] == "f" and i + 1 < n:
+            result.append(chars[i + 1])
+            result.append("ि")
+            i += 2
+        else:
+            result.append(chars[i])
+            i += 1
+
+    text = "".join(result)
+
+    # ---------- STEP 2: Fix reph (Z) ----------
+    # ZX → र्X
+    chars = list(text)
+    result = []
+    i = 0
+    n = len(chars)
+
+    while i < n:
+        if chars[i] == "Z" and result:
+            # insert र् before previous character
+            prev = result.pop()
+            result.append("्र")
+            result.append(prev)
+        else:
+            result.append(chars[i])
+        i += 1
+
+    text = "".join(result)
+
+    # ---------- STEP 3: Glyph replacement (single pass) ----------
     array_one = [
         "ñ","Q+Z","sas","aa",")Z","ZZ","‘","’","“","”",
         "å","ƒ","„","…","†","‡","ˆ","‰","Š","‹",
@@ -51,38 +86,10 @@ def krutidev_to_unicode(krutidev_substring):
         "ं","ँ","ः","ॅ","्","-","।"
     ]
 
-    # ---- Fix 'f' (ि) matra ----
-    modified_substring = " " + modified_substring + " "
-    while "f" in modified_substring:
-        pos = modified_substring.find("f")
-        if pos > 0:
-            modified_substring = (
-                modified_substring[:pos]
-                + modified_substring[pos+1]
-                + "f"
-                + modified_substring[pos+2:]
-            )
-        else:
-            break
-    modified_substring = modified_substring.replace("f", "ि").strip()
+    # Pre-build map for speed
+    replace_map = dict(zip(array_one, array_two))
 
-    # ---- Fix reph (Z) ----
-    modified_substring = " " + modified_substring + " "
-    while "Z" in modified_substring:
-        pos = modified_substring.find("Z")
-        modified_substring = modified_substring.replace("Z", "", 1)
-        if pos > 1:
-            modified_substring = (
-                modified_substring[:pos-1]
-                + "्र"
-                + modified_substring[pos-1:]
-            )
-    modified_substring = modified_substring.strip()
+    for k, v in replace_map.items():
+        text = text.replace(k, v)
 
-    # ---- Replace KrutiDev glyphs ----
-    for i in range(len(array_one)):
-        modified_substring = modified_substring.replace(
-            array_one[i], array_two[i]
-        )
-
-    return unicodedata.normalize("NFC", modified_substring)
+    return unicodedata.normalize("NFC", text)
