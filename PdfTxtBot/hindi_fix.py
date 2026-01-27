@@ -4,7 +4,7 @@ import re
 
 # Comprehensive mapping for Kruti Dev to Unicode
 MAPPING = {
-    "ñ": "॰", "Q+Z": "QZ+", "sas": "sa", "aa": "a", ")Z": "र्द्ध", "ZZ": "Z",
+    "ñ": "॰", "Q+Z": "फ़", "sas": "sa", "aa": "a", ")Z": "र्द्ध", "ZZ": "Z",
     "‘": "\"", "’": "\"", "“": "'", "”": "'", "å": "०", "ƒ": "१", "„": "२",
     "…": "३", "†": "४", "‡": "५", "ˆ": "६", "‰": "७", "Š": "८", "‹": "९",
     "¶+": "फ़्", "d+": "क़", "[+k": "ख़", "[+": "ख़्", "x+": "ग़", "T+": "ज़्",
@@ -39,38 +39,41 @@ def krutidev_to_unicode(text: str) -> str:
     if not text:
         return ""
 
-    # Sort by length to process multi-character codes first
-    sorted_keys = sorted(MAPPING.keys(), key=len, reverse=True)
-    
-    # Process the text
     modified_text = text
 
-    # Handle the 'f' (Chhoti ee) vowel shift BEFORE general mapping
-    # This finds 'f' followed by characters and moves it after them
-    modified_text = re.sub(r'f([][<>!@#$%^&*()_=+{}:;"\'?,./a-zA-Z0-9]+)', r'\1f', modified_text)
+    # 1. Handle the 'f' (Chhoti ee) shift before other replacements
+    # It looks for 'f' and moves it after the next consonant/half-consonant cluster
+    modified_text = re.sub(r'f((?:[a-zA-Z0-9\[\]{}|;:,.<>?/!@#$%^&*()_=+~-]|(?:[क-ह]्))*)', r'\1f', modified_text)
 
-    # General Mapping
+    # 2. General Mapping using sorted keys for priority
+    sorted_keys = sorted(MAPPING.keys(), key=len, reverse=True)
     for k in sorted_keys:
         modified_text = modified_text.replace(k, MAPPING[k])
 
-    # Re-replace the 'f' which is now mapped to 'ि' but in the wrong spot
-    # Logic: Move 'ि' after the consonant cluster
-    modified_text = re.sub(r'ि([क-ह]्|[क-ह])', r'\1ि', modified_text)
-    
-    # Handle Reph (Z) - Move 'र्' to the beginning of the word/cluster
-    # In Kruti Dev, 'Z' is at the end of the character cluster
-    modified_text = re.sub(r'([क-ह](्[क-ह])?)([ािीुूेैोौ]?)Z', r'र्\1\3', modified_text)
-    
-    # Clean up common Kruti Dev conversion artifacts
-    modified_text = modified_text.replace("िा", "ी")
-    modified_text = modified_text.replace("ज़्ा", "ज़ा")
+    # 3. Handle 'f' which is now 'ि' but needs to be placed after the consonant
+    # This regex moves 'ि' after the base consonant and its halant if applicable
+    modified_text = re.sub(r'ि([क-ह]्?[क-ह]?)', r'\1ि', modified_text)
+
+    # 4. Handle Reph (Z) - In Kruti Dev 'Z' is typed at the end, but Unicode 'र्' is at the start
+    # Matches a consonant cluster + matra followed by Z and moves 'र्' to the front
+    modified_text = re.sub(r'([क-ह]्?[क-ह]?[ािीुूेैोौ]?)Z', r'र्\1', modified_text)
+
+    # 5. Clean up conversion artifacts
+    replacements = {
+        "िा": "ी",
+        "ज़्ा": "ज़ा",
+        "्ा": "",
+        "ाे": "ो",
+        "ाै": "ौ"
+    }
+    for old, new in replacements.items():
+        modified_text = modified_text.replace(old, new)
 
     return unicodedata.normalize("NFC", modified_text).strip()
 
 def fix_file_content(content: str) -> str:
+    # Handle the specific case from your input: Dr -> क्त, f=k -> त्रि, etc.
     lines = content.split('\n')
     fixed_lines = [krutidev_to_unicode(line) for line in lines]
     return '\n'.join(fixed_lines)
-
-# Example Usage:
-# result = fix_file_content(your_txt_data)
+    
