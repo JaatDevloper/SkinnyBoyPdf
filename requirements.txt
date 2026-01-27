@@ -76,3 +76,4 @@ requests
 rfc3986
 sniffio
 tomli
+flask
