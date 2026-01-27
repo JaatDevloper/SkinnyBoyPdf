@@ -37,3 +37,7 @@ run = ["python", "main.py"]
 
 [userenv.shared]
 TELEGRAM_BOT_TOKEN = "8346675548:AAGqgGG6nGWZC-oDmUVFVEQUUwGKhjs-Gpc"
+
+[[ports]]
+localPort = 8000
+externalPort = 80
