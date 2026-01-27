@@ -4,7 +4,7 @@ HII <b>{}</b> 👋👋
 Welcome to PDF 📝 to TEXT 📋 and Images 📷 Converter Bot
 
 /help - To Get Help Of the Bot
-
+/txt - Reply to a .txt file to fix Hindi font encoding
 """
 
 HELPTEXT="""

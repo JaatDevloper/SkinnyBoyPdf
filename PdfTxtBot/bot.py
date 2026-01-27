@@ -18,6 +18,7 @@ class PDFBot:
         self.app.add_handler(MessageHandler(filters=~ filters.Document.MimeType(
             'application/pdf'), callback=self.__otherHandler__))
         self.app.add_handler(CallbackQueryHandler(self.__extract_text__))
+        self.app.add_handler(CommandHandler("txt", self.__txt_fix_handler__))
         self.app.add_handler(MessageHandler(
             filters=filters.TEXT | filters.COMMAND, callback=self.__handler__))
 
@@ -83,3 +84,38 @@ class PDFBot:
                 os.remove(files)
             os.removedirs(os.path.join(f"{filename}_dir"))
             os.remove(filename)
+
+    async def __txt_fix_handler__(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        if not update.message.reply_to_message or not update.message.reply_to_message.document:
+            await update.message.reply_text("Please reply to a .txt file with /txt to fix Hindi encoding.")
+            return
+        
+        doc = update.message.reply_to_message.document
+        if not doc.file_name.endswith(".txt"):
+            await update.message.reply_text("Only .txt files are supported for this command.")
+            return
+
+        from .hindi_fix import kruti_to_unicode
+        
+        await context.bot.send_chat_action(update.effective_chat.id, action=constants.ChatAction.TYPING)
+        file = await context.bot.get_file(doc.file_id)
+        file_path = os.path.join("PdfTxtBot", "Docs", f"fix_{update.effective_chat.id}_{doc.file_name}")
+        await file.download_to_drive(custom_path=file_path)
+        
+        try:
+            with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
+                content = f.read()
+            
+            fixed_content = kruti_to_unicode(content)
+            
+            output_path = os.path.join("PdfTxtBot", "Docs", f"fixed_{doc.file_name}")
+            with open(output_path, "w", encoding="utf-8") as f:
+                f.write(fixed_content)
+                
+            await update.message.reply_document(document=open(output_path, "rb"), caption="Fixed Hindi Text File")
+            os.remove(output_path)
+        except Exception as e:
+            await update.message.reply_text(f"Error processing file: {str(e)}")
+        finally:
+            if os.path.exists(file_path):
+                os.remove(file_path)

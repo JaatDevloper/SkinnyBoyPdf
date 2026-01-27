@@ -1,0 +1,898 @@
+1. ;fn ,d iafDr esa ,d O;fDr nk;ha vksj ls 6osa vkSj ck;ha vksj ls 8osa LFkku ij cSBk gS] rks ml iafDr esa cSBs O;fDr;ksa dh dqy la[;k Kkr dhft,\
+(a) 13 ✅
+(b) 12
+(c) 14
+(d) 15
+
+2. ijh{kk mÙkh.kZ djus okyksa esa djhuk Åij ls 25osa vkSj uhps ls 32osa LFkku ij gSaA ik¡p fo|kfFkZ;ksa us izfr;ksfxrk esa Hkkx ugha fy;k rFkk ik¡p fo|kFkhZ blesa vuqÙkh.kZ gks x;sA d{kk esa fdrus Nk= Fks \
+(a) 60
+(b) 66 ✅
+(c) 50
+(d) 56
+
+3. ,d drkj esa ''A’’ dk LFkku ck;ha vksj ls 11oka gS vkSj "B’’ nkfguh vksj ls 10osa LFkku ij gSA ;fn "A’’ vkSj "B’’ vkil esa LFkku cny ysrs gSa rks "A’’ vc ck;ha vksj ls 18osa LFkku ij vkrk gSA "A’’ vkSj "B’’ dks NksM+ drkj esa fdrus vkneh gS\
+(a) 28
+(b) 27
+(c) 26
+(d) 25 ✅
+
+4. ,d iafDr esa eksfgr ck,a Nksj ls 12oka lqfer nk,a Nksj ls 15oka gS lqfer eksfgr ds nk,a gS ;fn muds chp eas 6 O;fDr gS rks iafDr esa dqy fdrus O;fDr gS \
+(a) 32
+(b) 33 ✅
+(c) 34
+(d) 35
+
+5. ,d iafDr esa vuqie ck,a Nksj ls 11oka gS nhid nk,a Nksj ls 13oka gS nhid vuqie ds ck,a gS ;fn muds chp esa 4 O;fDr gS rc iafDr esa U;wure fdrus O;fDr gS\
+(a) 16
+(b) 17
+(c) 18 ✅
+(d) 19
+
+6. ,d d{kk esa lkr Nk= & P, Q, R, S, T, U vkSj V gSA mudh yEckb;ksa ds vk/kkj ij mudh rqyuk dh x;h gSA T, S ls NksVk gS] ysfdu U ls yack gSA U, P ls yEck gSA R vkSj Q, V ls NksVs gSa] ysfdu S ls yacs gSA mudh yEckb;ksa dk buesa ls dkSu&lk vuqØe laHko gks ldrk gS \
+(a) V > R > Q > S > T > U > P ✅
+(b) V > Q > R > T > S > U > P
+(c) V > R > Q > U > T > S > P
+(d) V > Q > R > S > T > P > U
+
+7. vkB O;fDr A, B, C, D, E, F, G rFkk H dsUnz ds foijhr eq[k djds ,d o`Ùkkdkj est ds bnZ&fxnZ cSBs gq, gS ¼t:jh ugha fd mudk Øe ;gh gks½A B, E dk iM+kslh gS rFkk A ds nk;ha vksj pkSFks LFkku ij gSA E rFkk F ds e/; dsoy nks O;fDr cSBs gq, gSA G rFkk H ds e/; dsoy rhu O;fDr cSBs gq, gSA B, G dk iM+kslh ugha gSA D, C ds ck;ha vksj rhljs LFkku ij gSA dkSu A ds iM+kslh gks ldrs gSa \
+(a) C rFkk D
+(b) H rFkk C
+(c) G rFkk D ✅
+(d) G rFkk H
+
+8. P, Q, R vkSj S dks ,d iafDr esa cSBuk gSA ijUrq R vkSj S ,d lkFk ugha cSB ldrsA Q rhljs LFkku ij Hkh ugha gks ldrk] rks fuEu esa ls dkSu&lk vlR; gksuk pkfg, \
+(a) P f}rh; LFkku ij gSA
+(b) P r`rh; LFkku ij gSA
+(c) P prqFkZ LFkku ij gSA
+(d) P izFke LFkku ij gSA ✅
+
+9. A, B, C, D, E, F vkSj G ,d o`Ùk ds pkjksa vksj dsanz dh vksj eq[k djds cSBs gSaA B] C ds nkabZ vksj nwljs LFkku ij cSBk gSA C] D ds nkabZ vksj rhljs LFkku ij cSBk gSA F] G ds nkabZ vksj rhljs LFkku ij cSBk gSA G] B dh cxy dk iM+kslh ugha gSA A] E ds ckabZ vksj rhljs LFkku ij cSBk gS] rks F ds nkabZ vksj nwljs LFkku ij dkSu cSBk gS\
+(a) E
+(b) G
+(c) D
+(d) A ✅
+
+10. lkr O;fä M] N] O] P] Q] R vkSj S mÙkj dh vksj eqag djds ,d lh/kh js[kk esa cSBs gSa ¼t:jh ugha fd blh Øe esa gksa½A R vkSj S ds chp esa dsoy nks O;fä cSBs gSaA S] N ds ck,a ls nwljs LFkku ij cSBk gSA P] O ds ck,a ls rhljs LFkku ij cSBk gSA S vkSj N ds chp esa dsoy Q cSBk gSA N iafä ds lcls nkfgus Nksj ij cSBk gSA rks fuEufyf[kr esa ls dkSu iafä ds Bhd chp esa cSBk gS\
+(a) M
+(b) S
+(c) O ✅
+(d) P
+
+11. funsZ'k ¼iz'u % 11& 12½ %
+M, N, P, R, T, W, F vkSj H dsUnz dh vksj eq¡g fd, ,d o`Ùk ds pkjksa vksj cSBs gSA P, M ds ck,¡ rhljk vkSj T ds nk,¡ nwljk gSA N, P ds nk,¡ nwljk gSA R, W ds nk,¡ nwljk gS tks M ds nk,¡ nwljk gSA F, P dk fudVre iM+kslh ugha gSA
+H ds iM+kslh dkSu gS\
+(a) P o N ✅
+(b) N o M
+(c) P o R
+(d) W o F
+
+12. N ds lanHkZ esa R dk LFkku dkSulk gS\
+(a) ck,¡ dks nwljk
+(b) ck,¡ dks rhljk ✅
+(c) nk,¡ dks nwljk
+(d) nk,¡ dks rhljk
+
+13. funsZ'k ¼iz'u % 13 & 14½ %
+A, B, C, D, E, F, G vkSj H dsUnz dh vksj eq¡g djds ,d o`Ùk ds pkjksa vksj cSBs gSA A, H ds nk,¡ dks pkSFks vkSj F ds ck,¡ dks nwljs LFkku ij cSBk gSA C, F vkSj B dk iM+kslh ugha gSA D, C ds nk,¡ dks rhljk cSBrk gSA H dHkh Hkh G ds vxys LFkku ij ugha cSBrk gSA bu lwpukvksa ds vk/kkj ij fuEufyf[kr iz'uksa ds mÙkj nhft, &
+B vkSj D ds chp esa dkSu gS\
+(a) A
+(b) G
+(c) H
+(d) F ✅
+
+14. F ds nk,¡ rhljs LFkku ij dkSu gS\
+(a) H
+(b) E ✅
+(c) G
+(d) B
+
+15. ml lgh fodYi dk p;u djsa] tks fn, x, 'kCnksa ds ml Øe dks n'kkZrk gS] ftl Øe esa os vaxzsth 'kCndks'k esa ekStwn gksrs gSa\
+1. Prestige 2. Pristine
+3. Prescribe 4. Prepaid
+5. Premium
+(a) 4] 5] 3] 2] 1
+(b) 5] 3] 4] 1] 2
+(c) 5] 4] 3] 1] 2 ✅
+(d) 4] 5] 3] 1] 2
+
+16. CORPORATE 'kCn esa ,sls fdrus tksM+s gS] ftuesa ls izR;sd ds chp mrus gh v{kj gS] ftrus fd vaxsth o.kZekyk esa muds chp gksrs gSa \
+(a) 2
+(b) 3
+(c) 4 ✅
+(d) 5
+
+17. vaxzsth o.kZekyk esa ck,¡ ls 13osa v{kj ds nk,¡ vksj 7ok¡ v{kj dkSu&lk gksxk \
+(a) R
+(b) S
+(c) T ✅
+(d) U
+
+18. 'MEDITATION' 'kCn esa ,sls fdrus v{kj ;qXe gS ftuds chp esa vaxzsth o.kZekyk Øe ls ,d de v{kj vkrs gSa\
+(a) 2
+(b) 3 ✅
+(c) 4
+(d) 5
+
+19. 'kCn 'TRANSFORM' ds v{kjksa iz;ksx djds fuEu esa ls dkSuls 'kCn dk fuekZ.k fd;k tk ldrk gS\
+(a) TRAIN
+(b) FORK
+(c) ROAMING
+(d) RANSOM ✅
+
+20. ALLAHABAD 'kCn dks fdrus izdkj ls fy[kk tk ldrk gS\
+(a) 7560 ✅
+(b) 15120
+(c) 3738
+(d) 1890
+
+21. ,d jkf'k esa 8 o"kksZ esa lk/kkj.k C;kt ij 40 izfr'kr dh o`f) gksrh gSA mlh nj ij 2 o"kksZ esa ₹ 30000 dk pØo`f) C;kt ¼₹ esa½ fdruk gksxk\
+(a) ₹ 6150
+(b) ₹ 7687-5
+(c) ₹ 4612-5
+(d) ₹ 3075 ✅
+
+22. fdl jkf'k ij 18% izfro"kZ pØo`f) C;kt dh nj ls nwljs o"kZ ds fy, C;kt ds :i esa ₹ 2655 izkIr gksaxs\
+(a) ₹ 12500 ✅
+(b) ₹ 12900
+(c) ₹ 12000
+(d) ₹ 14500
+
+23. fdlh /kujkf'k ij 5% izfro"kZ dh nj ls 2 o"kZ ds fy, vftZr lk/kkj.k vkSj pØo`f) C;kt ds chp dk varj ₹ 42 gSA ewy/ku Kkr dhft,A
+(a) 16800 ✅
+(b) 17500
+(c) 14450
+(d) 12000
+
+24. ₹ 8000 dk 15% okf"kZd nj ls 2 o"kZ 4 ekg dk okf"kZd :i esa la;ksftr pØo`f) C;kt fdruk gksxk\
+(a) ₹ 2980 ✅
+(b) ₹ 3091
+(c) ₹ 3109
+(d) ₹ 3100
+
+25. fdlh /kujkf'k ds 10% okf"kZd nj ls 2 o"kZ ds pØo`f) C;kt rFkk lk/kkj.k C;kt dk vUrj ₹ 40 gS] og /kujkf'k fdruh gS\
+(a) ₹ 4000 ✅
+(b) ₹ 3600
+(c) ₹ 4200
+(d) ₹ 3200
+
+26. Jh FkkWel us 14% izfro"kZ vkSj 11% izfro"kZ dh lk/kkj.k C;kt nj ij Øe'k nks vyx&vyx ;kstukvksa A vkSj B esa ₹13900@& dh jkf'k dk fuos'k fd;kA ;fn 2 o"kksZ esa vftZr lk/kkj.k C;kt dh dqy jkf'k ₹3]508@& gks] rks ;kstuk B esa fuos'k dh xbZ jkf'k D;k Fkh\
+(a) 6594
+(b) 6400 ✅
+(c) 5450
+(d) 6000
+
+27. ,d fuf'pr le; esa ,d fuf'pr jkf'k lk/kkj.k C;kt ij 12% izfro"kZ dh nj ls ₹ 5000 gks tkrh gSa vkSj leku jkf'k leku vof/k esa 4% izfro"kZ lk/kkj.k C;kt dh nj ls ₹ 2000 gks tkrh gSA jkf'k vkSj le; Kkr dhft,A
+(a) ₹ 400] 70 o"kZ
+(b) ₹ 450] 75 o"kZ
+(c) ₹ 500] 65 o"kZ
+(d) ₹ 500] 75 o"kZ ✅
+
+28. ₹ 12]500 dh dksbZ /kujkf'k 4 o"kksZ ds lk/kkj.k C;kt ij ₹ 15]500 gks tkrh gSA C;kt nj D;k gS\
+(a) 3%
+(b) 4%
+(c) 5%
+(d) 6% ✅
+
+29. vk'kh"k us dqN /ku m/kkj fy;k ftl ij C;kt dh nj igys 2 o"kZ rd 6% okf"kZd] vxys 3 o"kZ rd 9% okf"kZd rFkk blds ckn 14% okf"kZd Fkh] ;fn 9 o"kZ ckn mlus dqy lk/kkj.k C;kt ₹ 11400 fn;k gks] rks mlus dqy fdruk /ku m/kkj fy;k\
+(a) ₹ 12000 ✅
+(b) ₹ 14000
+(c) ₹ 16000
+(d) ₹ 18000
+
+30. ;fn A vkSj B dk vuqikr 4 % 5 gS vkSj muds oxksZ dk varj 81 gS] rks A dk eku D;k gS\
+(a) 12 ✅
+(b) 15
+(c) 11
+(d) 22
+
+31. eaFku ,oa mldh ekrk dh orZeku vk;q dk vuqikr Øe'k% 3 % 7 gS ,oa eaFku ,oa mlds firk dh orZeku vk;q dk vuqikr Øe'k% 5 % 14 gSA eaFku dh ekrk ,oa mlds firk dh orZeku vk;q ds e/; Øe'k% D;k vuqikr gS\
+(a) 5 % 7
+(b) 7 % 9
+(c) 3 % 5
+(d) 5 % 6 ✅
+
+32. 5] 13] 22 rFkk 47 esa ls izR;sd esa D;k tksM+sa fd izkIr la[;k;sa lekuqikrh gksa\
+(a) 2
+(b) 4
+(c) 3 ✅
+(d) 5
+
+33. gseUr us ₹ 50000 fuos'k djds ,d O;kikj vkjEHk fd;k] 8 eghus ckn ₹ 70000 dh jkf'k ds lkFk lanhi O;kikj esa lfEefyr gks x;k] 3 o"kZ ckn buds ykHk c¡Vokjk Øe'k% fdl vuqikr esa gksxk\
+(a) 45 % 49 ✅
+(b) 43 % 45
+(c) 51 % 49
+(d) 53 % 51
+
+34. fdlh lsuk ds tujy 36562 lSfudksa ls ,d oxkZdkj O;wg cukuk pkgrs gSaA O;wg dh jpuk djus ds ckn dqN lSfud cp x,A cps gq, lSfudksa dh la[;k D;k Fkh \
+(a) 36
+(b) 65
+(c) 81 ✅
+(d) 97
+
+35. 10] 16 rFkk 24 rhuksa ls foHkkftr gksus okyh lcls NksVh oxZ la[;k D;k gS \
+(a) 900
+(b) 1600
+(c) 2500
+(d) 3600 ✅
+
+36. 294 dks fdl NksVh ls NksVh la[;k ls xq.kk djsa fd xq.kuQy ,d iq.kZ oxZ gks \
+(a) 2
+(b) 3
+(c) 6 ✅
+(d) 24
+
+37. og NksVh NksVh la[;k dkSu&lh gS tks ,d iw.kZ oxZ gS rFkk 10] 12] 15] 18 ls esa ls izR;sd ls iw.kZr;k foHkDr gksrh gS \
+(a) 360
+(b) 400
+(c) 600
+(d) 900 ✅
+
+38. dkSulh feV~Vh dh ty/kkj.k {kerk U;wure gksrh gS &
+(a) jsxqj
+(b) dkyh feV~Vh
+(c) dNkjh
+(d) e:LFkyh; feV~Vh ✅
+
+39. jktLFkku ds ukxkSj] ikyh] ckM+esj ,oa tSlyesj ftyksa esa eq[;r% dkSulh e`nk ikbZ tkrh gS &
+(a) cyqbZ e`nk ✅
+(b) dkyh e`nk
+(c) yky e`nk
+(d) ihyh e`nk
+
+40. jktLFkku ds fdu ftyksa esa yky ykseh feV~Vh ik;h tkrh gS\
+(a) mn;iqj] Mwaxjiqj ✅
+(b) tSlyesj] tkykSj
+(c) ukxkSj] vtesj
+(d) dksVk] ckjka
+
+41. jktLFkku esa ukbVªsV dh mifLFkfr ds dkj.k dkSulh e`nk moZjd gS\
+(a) yky&ihyh
+(b) yky&ykseh
+(c) yky&jsrhyh
+(d) Hkwjh & jsrhyh ✅
+
+42. cukl unh ds tyxzg.k {ks= esa fuEufyf[k esa ls fdl e`nk dk vf/kdka'k {ks=Qy gSa\
+(a) yky ykseh
+(b) fefJr yky ,oa ihyh
+(c) lhjkstse
+(d) Hkwjh ✅
+
+43. jktLFkku esa fdl izdkj ds iz'kklfud ou {ks= lokZf/kd ik;s tkrs gSa\
+(a) vkjf{kr
+(b) voxhZd`r
+(c) oftZr
+(d) lqjf{kr ✅
+
+44. jktLFkku dk dkSulk o`{k ^taxy dh Tokyk* (Flame of the forest) ds uke ls tkuk tkrk gSS\
+(a) [kstM+h
+(b) uhe
+(c) iykl ✅
+(d) ikjl ihiy
+
+45. fo'o i;kZoj.k fnol dc euk;k tkrk gS\
+(a) 5 ebZ
+(b) 5 twu ✅
+(c) 22 ekpZ
+(d) 22 viSzy
+
+46. jkelkxj oU;tho vHk;kj.; fLFkr gS\
+(a) /kkSyiqj ✅
+(b) ck¡lokM+k
+(c) fpÙkkSM+x<+
+(d) ckjk
+
+47. rkyNkij d`".ke`x vHk;kj.; fdl ftys esa fLFkr gS\
+(a) lhdj
+(b) >qa>quwa
+(c) nkSlk
+(d) pw: ✅
+
+48. jktLFkku lfpoky; dk eq[;ky; fLFkr gS\
+(a) tks/kiqj
+(b) vtesj
+(c) t;iqj ✅
+(d) dksVk
+
+49. mi[k.M vf/kdkjh (SDO) dh HkrhZ] fu;qfDr vksj inksUufr ds fy, mÙkjnk;h laLFkk gSA
+(a) jktLFkku yksd lsok vk;ksx
+(b) dkfeZd foHkkx jktLFkku ✅
+(c) jktLo eaMy] jktLFkku
+(d) iz'kklfud lq/kkj ,oa leUo; foHkkx
+
+50. ftyk iz'kklu dk dkSu&lk vf/kdkjh vkink izca/ku dk usr`Ro djrk gS \
+(a) iqfyl v/kh{kd
+(b) uxjikfydk v/;{k
+(c) ftyk dysDVj ✅
+(d) ftyk izeq[k
+
+51. ftyk dysDVj fdlds izfr tokcnsg gksrk gS\
+(a) ftyk izeq[k
+(b) eq[;ea=h
+(c) eq[; lfpo
+(d) laHkkxh; vk;qDr ✅
+
+52. ftyk Lrj ij ftyk ifj"kn dk D;k dk;Z gksrk gS\
+(a) iz'kklfud dk;Z
+(b) jktLo dk;Z
+(c) U;kf;d dk;Z
+(d) fodkl dk;Z ✅
+
+53. esokM+ ,oa ekjokM+ dh la;qDr lsuk,¡ eqxyksa ds }kjk dgk¡ ijkftr dh x;h Fkh\
+(a) ikuhir] 1556
+(b) rjkbu] 1192
+(c) nsokjh] 1680 ✅
+(d) lqesy] 1544
+
+54. fdl 'kkld dks ^dy;qx dk d.kZ* dgk x;k gS\
+(a) jko yw.kd.kZ ✅
+(b) tloUrflag
+(c) t;flag
+(d) jk.kklk¡xk
+
+55. vdcj us viuh 1570 bZ- dh ukxkSj ;k=k ds le; tks/kiqj nqxZ fdldks lqiqnZ fd;k Fkk\
+(a) mn;iqj&tks/kiqj
+(b) ekuflag&vkesj
+(c) jk;flag&chdkusj ✅
+(d) lqtZu&flag&j.kFkEHkkSj
+
+56. chdkusj ds dkSu&ls 'kkld dks mldh ohjrk ls izHkkfor gksdj vkSjaxtsc us ^ekgh ejkfrc* dh mikf/k nh\
+(a) jko nyirflag
+(b) jko lwjflag
+(c) jko d.kZflag
+(d) jko vuwiflag ✅
+
+57. jktLFkku ds fdl 'kkld us f}rh; xksyest lEesyu esa Hkkx fy;k\
+(a) xaxkflag ✅
+(b) mn;flag
+(c) Hkksikyflag
+(d) lokbZ t;flag
+
+58. 1857 dh ØkfUr ds le; estj LQksfVl oqM rFkk duZy U;wcjh dh gR;k fdl Nkouh esa dh xbZ Fkh\
+(a) uhep
+(b) C;koj
+(c) ulhjkckn ✅
+(d) [kSjokM+k
+
+59. 1857 ds fonzksg ds nkSjku estj CkVZu o muds nks iq= dgk¡ ekjs x, Fks &
+(a) ulhjkckn
+(b) ,sjuiqjk
+(c) tks/kiqj
+(d) dksVk ✅
+
+60. ^fcFkkSM+k* uked LFkku fdlls lEcfU/kr gS\
+(a) eqxy&jktiwr ;q)
+(b) 1857 ds Lora=rk laxzke ✅
+(c) fHkfRr fp=ksa
+(d) ty&fo|qr ifj;kstuk
+
+61. fdl Nkouh ds lSfud nLrksa us 21 vxLr] 1857 dks ^pyks fnYyh&ekjks fQjaxh* ukjs ds lkFk cxkor dh\
+(a) ulhjkckn
+(b) esjB
+(c) uhep
+(d) ,fjuiqjk ✅
+
+62. 1857 dh Økafr ds le; /kkSyiqj dk 'kkld Fkk
+(a) jkeflag
+(b) mn;Hkkuflag
+(c) dhjrflag
+(d) HkxoUrflag ✅
+
+63. vyoj {ks= dh yksdnsoh ds :i esa fdls ekU;rk izkIr gS\
+(a) yfV;kyk ekrk
+(b) lfp;k ekrk
+(c) lqxkyh ekrk
+(d) ftyk.kh ekrk ✅
+
+64. fdl nsoh dks dHkh ekal dk Hkksx ugha yxk;k x;k\
+(a) f”kyk nsoh
+(b) dSyk nsoh ✅
+(c) of.kZr nksuksa nsfo;k¡
+(d) buesa ls dksbZ ugha
+
+65. jktLFkku dh og nsoh ftlds efUnj esa HkDrksa dh bPNkuqlkj “kjkc dk izlkn feyrk gS &
+(a) th.k ekrk
+(b) dSyk ekrk
+(c) f”kyk nsoh ✅
+(d) vEck ekrk
+
+66. lk¡Hkj >hy esa fuEu esa ls fdl nsoh dk efUnj fLFkr gS\
+(a) “kkdEHkjh nsoh ✅
+(b) dqaty ekrk
+(c) f”kyk nsoh
+(d) cou nsoh
+
+67. tks/kiqj ds jkBkSM+ksa dh nsoh] ftldh 18 Hkqtk,¡ gSa &
+(a) “khryk ekrk
+(b) vkojh ekrk
+(c) ldjk; ekrk
+(d) ukx.ksph ekrk ✅
+
+68. jktLFkkuh fp=dyk dk lcls igys oSKkfud foHkktu fdlus fd;k\
+(a) if.Mr }kjdk izlkn 'kekZ
+(b) vkuUn dqekj Lokeh ✅
+(c) LkkSHkkX;ey xgyksr
+(d) Jhjk;d`".knkl th
+
+69. dkSu&lk fp=dkj fp=dyk dh esokM+ 'kSyh ls lEc) Fkk\
+(a) :duqn~nhu
+(b) dkfle
+(c) lkfgcnhu ✅
+(d) 'kkg eqgEen
+
+70. esokM+ fp=dyk 'kSyh dk lcls izkphu fpf=r xzUFk-------- gSA
+(a) liklukpk;Ze
+(b) jkfxuh
+(c) Hkkxor
+(d) Jkod izfrØe.k lw= pwf.kZ ✅
+
+71. ^fiNokbZ fp=kadu* fdl fp=dyk 'kSyh ls lEcfU/kr gS\
+(a) fd'kux<+ fp=dyk 'kSyh
+(b) chdkusj fp=dyk 'kSyh
+(c) vyoj fp=dyk 'kSyh
+(d) ukFk}kjk fp=dyk 'kSyh ✅
+
+72. lkoUrflag dk lEcU/k fdl fp=dyk 'kSyh ls Fkk\
+(a) <w¡<kM+ 'kSyh
+(b) gkM+kSrh 'kSyh
+(c) pko.M 'kSyh
+(d) fd'kux<+ 'kSyh ✅
+
+73. Hkkjr dk jk"Vªifr viuk R;kxi= fdls izsf"kr djrk gS\
+(a) iz/kkuea=h
+(b) yksdlHkk v/;{k
+(c) mPpre U;k;ky; ds eq[; U;k;k/kh'k
+(d) mijk"Vªifr ✅
+
+74. Hkkjr ds lafo/kku ds vuqPNsn 75 ¼1½ ds vuqlkj] iz/kkuea=h gksasxs&
+(a) fu;qDr ✅
+(b) euksuhr
+(c) p;fur
+(d) fuokZfpr
+
+75. fuEukfyf[kr esa ls dkSu Hkkjr&ljdkj ds iz/kkea=h ds osru ,oa HkÙkksa dk fu/kkZj.k djrk gS\
+(a) jk"Vªifr
+(b) laln ✅
+(c) iz/kkuea=h Lo;
+(d) eaf=ea.My
+
+76. og izFke iz/kkuea=h dkSu Fks ftUgkssaus laln l= esa mifLFkr gq, fcuk gh R;kx i= ns fn;k Fkk\
+(a) Jherh bfUnjk xkW/kh
+(b) yky cgknqj 'kkL=h
+(c) pj.k flag ✅
+(d) eksjkjth nslkbZ
+
+77. dsUnzh; eaf=ifj"kn dk izeq[k dkSu gksrk gS \
+(a) yksdlHkk v/;{k
+(b) yksdlHkk mik/;{k
+(c) jkT;lHkk lHkkifr
+(d) iz/kkuea=h ✅
+
+78. feyku dj lgh tksM+k pqus &
+ckS) laxhfr;ka laj{kd 'kkld
+¼A½ izFke ¼i½ vtk'k=q
+¼B½ f}rh; ¼ii½ dkyk'kksd
+¼C½ r`rh; ¼iii½ v'kksd
+¼D½ prqFkZ ¼iv½ dfu"d
+(a) A-i, B-ii, C-iii, D-iv ✅
+(b) A-i, B-ii, C-iv, D-iii
+(c) A-ii, B-i, C-iv, D-iii
+(d) A-iv, B-iii, C-ii, D-i
+
+79. Hkxoku cq) ds cpiu dk uke Fkk \
+(a) vkuan
+(b) fl)kFkZ ✅
+(c) tkekyh
+(d) o/kZeku
+
+80. Hkxoku cq) dk tUe dgk¡ gqvk Fkk \
+(a) cks/kx;k
+(b) lkjukFk
+(c) dq'khukjk
+(d) yqfEcuhou ✅
+
+81. pkj vk;Z lR; dk laca/k gS\
+(a) tSu /keZ ls
+(b) ckS) /keZ ls ✅
+(c) 'kSo /keZ ls
+(d) oS".ko /keZ
+
+82. tkrd dFkkvksa dk laca/k gS\
+(a) tSu /keZ ls
+(b) ckS) /keZ ls ✅
+(c) 'kSo /keZ ls
+(d) oS".ko /keZ
+
+83. vlR; dFku NkafV, &
+(a) cLrj ds iBkj ij bUnzkorh unh cgrh gSA
+(b) nYyhjktgjk ckWDlkbV dh fo[;kr [kku gSA ✅
+(c) ekYnk Hkza'k NksVkukxiqj iBkj o es?kky; iBkj dks vyx djrk gSA
+(d) dchZvkaxykasx dk iBkj vle esa fLFkr gSA
+
+84. fla/kq unh ds laca/k esa vlR; dFku NkafV, \
+(a) ;g nepksd uked LFkku ls Hkkjr esa izos'k djrh gSA
+(b) ;g vVd ¼ikfdLrku½ ls eSnkuksa esa izos'k djrh gSA
+(c) iBkudksV ds ikl iapun dk laxe fla/kq esa gksrk gSA ✅
+(d) ;g uaxk ioZr ds ikl cqath xkWtZ dk fuekZ.k djrh gSA
+
+85. fuEufyf[kr esa ls e:lqnj unh fdldh lgk;d unh gS\
+(a) jkoh
+(b) psukc ✅
+(c) >sye
+(d) lryt
+
+86. fuEufyf[kr esa ls dkSulh unh czãiq= dh lgk;d unh ugha gS\
+(a) yksfgr
+(b) dfiyh
+(c) jSMd
+(d) fgaMu ✅
+
+87. jspuk nksvkc fLFkr gS\
+(a) >sye o psukc ufn;kas ds chp
+(b) jkoh o O;kl ufn;ksa ds chp
+(c) O;kl o lryt ufn;ksa ds chp
+(d) psukc o jkoh ufn;ksa ds chp ✅
+
+88. Hkkjr dh lcls cM+h vUr% LFkyh; [kkjs ikuh dh >hy dkSulh gS
+(a) fpYdk
+(b) lkaHkj ✅
+(c) iqyhdV
+(d) csEcukM
+
+89. pksyeks >hy dgk¡ fLFkr gS\
+(a) tEew&d'ehj
+(b) fgekpy izns'k
+(c) flfDde ✅
+(d) v:.kkpy izns'k
+
+90. lqesfyr dhft, &
+ifj;kstuk unh
+A. Fkhu ifj;kstuk i. flys:
+B. fdlkÅ ifj;kstuk ii. egkunh
+C. ghjkdq.M ck¡/k iii. VkWUl
+D. ckyh esyk ifj;kstuk iv. jkoh unh
+dwV %&
+A B C D
+(a) i ii iii iv
+(b) ii i iv iii
+(c) iv ii iii i
+(d) iv iii ii i ✅
+
+91. fuEufyf[kr esa ls dkSulk jkT; y[kokj cgqmn~ns'kh; ifj;kstuk ls ykHkkfUor ugha gksrk gS\
+(a) jktLFkku
+(b) iatkc ✅
+(c) mÙkjk[k.M
+(d) gfj;k.kk
+
+92. vlqesfyr NkafV, &
+ifj;kstuk unh
+(a) ikdynqy & jkoh ✅
+(b) bMqDdh ck¡/k & isfj;kj
+(c) Jh lsye
+(d) esVwj ck¡/k & dkosjh
+
+93. ^lIrf"kZ* dk laf/k foPNsn gksxk &
+(a) lIr% $ _f"k
+(b) lIrj% $ _f"k
+(c) lIr $ _f"k ✅
+(d) lkr $ _f"k
+
+94. ^ijeksRlo* 'kCn esa dkSu&lh laf/k gS \
+(a) ;.k laf/k
+(b) o`f) laf/k
+(c) nh?kZ laf/k
+(d) xq.k laf/k ✅
+
+95. ^vUos"k.k* 'kCn esa dkSu&lh lfU/k gS \
+(a) folxZ laf/k
+(b) ;.k~ laf/k ✅
+(c) v;kfn laf/k
+(d) v;kfn laf/k
+
+96. xq.k laf/k dk mnkgj.k gS &
+(a) egksRlo ✅
+(b) egkS"kf/k
+(c) vUos"k.k
+(d) xk;u
+
+97. ^fueZy* esa dkSu&lh laf/k gS \
+(a) O;atu laf/k
+(b) folxZ laf/k ✅
+(c) Loj laf/k
+(d) dksbZ ugha
+
+98. ^fujFkZd* dk laf/k foPNsn gS &
+(a) fuj~ $ vFkZd
+(b) fuj% $ vFkZd
+(c) fu% $ vFkZd ✅
+(d) fujk $ vFkZd
+
+99. ^yM+diu* dk lgh lfU/k foPNsn gksxk &
+(a) yM+d $ iu
+(b) yM+dk $ iu ✅
+(c) yM+d $ viu
+(d) yM+dk $ viu
+
+100. ^ln~Hkkouk* dk lfU/k foPNsn gksxk &
+(a) l $ Hkkouk
+(b) l $ ln~Hkkouk
+(c) ln~ $ Hkkouk
+(d) lr~ $ Hkkouk ✅
+
+101. ^okˆ~e;* esa dkSu&lh laf/k gS \
+(a) o`f)
+(b) O;atu ✅
+(c) folxZ
+(d) v;kfn
+
+102. ;.k~ Loj laf/k esa fufeZr 'kCn ugha gS &
+(a) vH;kosnu
+(b) Lok/khu ✅
+(c) Lokxr
+(d) L«;qi;ksxh
+
+103. fdl lekl esa izFke in iz/kku gksrk gS \
+(a) deZ/kkj;
+(b) vO;;hHkko ✅
+(c) cgqczhfg
+(d) rRiq#"k
+
+104. cgqozhfg lekl dk mnkgj.k gS &
+(a) f=Qyk
+(b) pØ/kj ✅
+(c) ;FkklaHko
+(d) /keZohj
+
+105. ^;Fkkefr* 'kCn esa dkSu&lk lekl gS \
+(a) rRiq#"k
+(b) f}xq
+(c) deZ/kkj;
+(d) vO;;hHkko ✅
+
+106. fdl 'kCn esa f}xq lekl ugha gS \
+(a) pkSjkgk
+(b) f=Hkqt
+(c) prqjkuu ✅
+(d) lIrkg
+
+107. ^ihrkEcj* 'kCn esa dkSu&lk lekl gS \
+(a) deZ/kkj; ✅
+(b) rRiq#"k
+(c) }U}
+(d) f}xq
+
+108. ^}U}* lekl gS &
+(a) yEcksnj
+(b) va/kdwi
+(c) uj&ukjh ✅
+(d) 'kj.kkxr
+
+109. deZ/kkj; lekl dk mnkgj.k ugha gS
+(a) ijek.kq
+(b) prqjkuu ✅
+(c) lnk'k;
+(d) Hkolkxj
+
+110. ^e`R;q dks mUeq[k* foxzg gsrq mi;qDr lkekfld in gS
+(a) e`R;qUew[k
+(b) e`R;wUeq[k ✅
+(c) e`R;qUeq[k
+(d) e`rkeUeq[k
+
+111. ^vxy&cxy* dk lgh lekl foxzg gS
+(a) vxy ;k cxy
+(b) vxy vkSj cxy
+(c) vxy] cxy vkfn
+(d) cxy vkfn ✅
+
+112. ^iq#"kksÙke* dk lgh lekl foxzg gS &
+(a) mÙke gS tks iq#"k ✅
+(b) iq#"kksa ds fy, mÙke
+(c) iq#"kksa tSlk mÙke
+(d) iq#"k gks x;k tks mÙke
+
+113. fuEufyf[kr esa ls dkSulh osDVj ¼lfn'k½ jkf'k gS\
+(a) cy ✅
+(b) pky
+(c) ÅtkZ
+(d) rkieku
+
+114. cy dk ek=d gS &
+(a) fdxzk-@eh- ls-2
+(b) fdxzk-@eh- ls-2 ✅
+(c) fdxzk- eh-@lsd.M
+(d) fdxzk- eh-&ls-2
+
+115. i`Foh o lw;Z ds chp dh nwjh ;fn orZeku nwjh dh vis{kk nks xquh gks tk;s rks i`Foh ij lw;Z }kjk xq#Rokd"kZ.k cy \
+(a) igys dh vis{kk vk/kk gksxk
+(b) igys dh vis{kk nks xquk gksxk
+(c) igys dh vis{kk ,d&pkSFkkbZ gksxk ✅
+(d) igys dh vis{kk pkj xquk gksxk
+
+116. xq#Rokd"kZ.k fu;e dh ifjHkk"kk fdlus nh Fkh \
+(a) U;wVu ✅
+(b) vkfdZfeMht
+(c) xSfyfy;ks
+(d) QSjkMs
+
+117. 'kjhj dk otu &
+(a) i`Foh dh lrg ij lHkh txg ,d leku gksrk gSA
+(b) /kzqoksa ij vf/kdre gksrk gSA ✅
+(c) fo"kqor~ js[kk ij vf/kdre gksrk gSA
+(d) eSnkuksa dh rqyuk esa igkfM+;ksa ij vf/kd gksrk gSA
+
+118. dkSu vlEidZ cy ugha gS\
+(a) pqEcdh; cy
+(b) fLFkj oS|qr cy
+(c) xq#Rokd"kZ.k cy
+(d) ?k"kZ.k cy ✅
+
+119. ,d yM+dh >wys esa cSBdj >wy jgh gSA ;fn yM+dh ,dk,d [kM+h gks tk, rks nksyu dky&
+(a) de gks tk,xk ✅
+(b) c<+ tk,xk
+(c) vifjofrZr jgsxk
+(d) nksyu #d tk,axs
+
+120. ;fn fdlh foy;u dk pH 5.2 gS rks bldk P gksxk
+(a) 4-8
+(b) 5-8
+(c) 6-8
+(d) 8-8 ✅
+
+121. dkSulk ,d vEyh; yo.k gS
+(a) lksfM;e DyksjkbM
+(b) lksfM;e dkcksZusV
+(c) veksfu;e DyksjkbM ✅
+(d) iksVSf'k;e lYQsV
+
+122. vEy dk /kkrq ds lkFk vfHkfØ;k djus ij lkekU;r% dkSulh xSl eqDr gksrh gS &
+(a) CO
+(b) CO2
+(c) NO2
+(d) H2 ✅
+
+123. vEy] {kkj ds lkFk vfHkfØ;k djds yo.k vkSj ikuh cukrk gSA bl vfHkfØ;k dks dgrs gS\
+(a) la;kstu
+(b) mnklhuhdj.k ✅
+(c) vip;u
+(d) vi?kVu
+
+124. fuEu esa ls dksulk VkVZfjd vEy dk eq[; izkd`frd lzksr gS\
+(a) VekVj
+(b) fljdk
+(c) beyh ✅
+(d) lUrjk
+
+125. tc dksbZ oLrq fLFkj gksrh gS rc &
+(a) ml ij dksbZ cy dk;Z ugha djrkA
+(b) oLrq ij yxus okys cy mls Li'kZ ugha djrsA
+(c) oLrq ij yxus okys cy ,d&nwljs dks larqfyr dj ysrs gSA ✅
+(d) oLrq fuokZr~ esa gksrh gSA
+
+126. fuEu esa ls dkSulk vEy lcls izcy gSa\
+(a) HCIO4 ✅
+(b) HCIO3
+(c) HCIO2
+(d) HF
+
+127. The teacher asked why the homework ____ incomplete
+(a) is
+(b) was ✅
+(c) has been
+(d) had been
+
+128. Hardly _____ the bell rung when the students rushed out.
+(a) had ✅
+(b) has
+(c) did
+(d) was
+
+129. The news of his success ____ everyone happy
+(a) make
+(b) makes ✅
+(c) made
+(d) making
+
+130. Each of the players _____ awarded a certificate
+(a) were
+(b) have been
+(c) was ✅
+(d) are
+
+131. He behaves as if he ____ the leader of the group
+(a) is
+(b) was
+(c) were ✅
+(d) has been
+
+132. The train ______ before we reached the station.
+(a) leaves
+(b) left
+(c) has left
+(d) had left ✅
+
+133. No sooner _____ the rain started than the match was stopped.
+(a) did
+(b) has
+(c) had ✅
+(d) was
+
+134. You _____ respect your elders. (moral duty)
+(a) may
+(b) might
+(c) must ✅
+(d) could
+
+135. She _____ be at home; the lights are on. (logical inference)
+(a) must ✅
+(b) should
+(c) can
+(d) need
+
+136. We _____ finish the project by Monday, otherwise we’ll lose marks
+(a) might
+(b) should
+(c) could
+(d) must ✅
+
+137. _____ I borrow your book for a day?
+(a) Must
+(b) Need
+(c) May ✅
+(d) Should
+
+138. He _____ have informed us earlier. (criticism)
+(a) can
+(b) must
+(c) should ✅
+(d) may
+
+139. You _____ not touch the exhibits in the museum.
+(a) may
+(b) need
+(c) dare
+(d) must ✅
+
+140. She ____ solve the problem when she was in class six.
+(a) must
+(b) could ✅
+(c) may
+(d) should
+
+141. The cat jumped ____ the wall.
+(a) on
+(b) at
+(c) over ✅
+(d) into
+
+142. He has been absent ____ Monday.
+(a) from
+(b) since ✅
+(c) for
+(d) by
+
+143. She is good _____ mathematics.
+(a) in
+(b) at ✅
+(c) with
+(d) for
+
+144. The book is _____ the table
+(a) in
+(b) over
+(c) on ✅
+(d) upon
+
+145. He was accused ____ theft.
+(a) with
+(b) for
+(c) of ✅
+(d) by
+
+146. The children were divided _____ four groups
+(a) between
+(b) among
+(c) into ✅
+(d) by
+
+
+Note: Skipped 4 image-based questions.
