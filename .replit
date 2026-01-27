@@ -32,3 +32,8 @@ args = "python main.py"
 [deployment]
 deploymentTarget = "vm"
 run = ["python", "main.py"]
+
+[userenv]
+
+[userenv.shared]
+TELEGRAM_BOT_TOKEN = "8346675548:AAGqgGG6nGWZC-oDmUVFVEQUUwGKhjs-Gpc"
