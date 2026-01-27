@@ -13,12 +13,11 @@ class PDFBot:
         self.app = ApplicationBuilder().token(TOKEN).build()
         self.app.add_handler(CommandHandler("start", self.__start__))
         self.app.add_handler(CommandHandler("help", self.__help__))
+        self.app.add_handler(CommandHandler("txt", self.__txt_fix_handler__))
         self.app.add_handler(MessageHandler(filters=filters.Document.MimeType(
             'application/pdf'), callback=self.__fileHandler__))
-        self.app.add_handler(MessageHandler(filters=~ filters.Document.MimeType(
-            'application/pdf'), callback=self.__otherHandler__))
+        self.app.add_handler(MessageHandler(filters=filters.Document.ALL & ~filters.COMMAND, callback=self.__otherHandler__))
         self.app.add_handler(CallbackQueryHandler(self.__extract_text__))
-        self.app.add_handler(CommandHandler("txt", self.__txt_fix_handler__))
         self.app.add_handler(MessageHandler(
             filters=filters.TEXT | filters.COMMAND, callback=self.__handler__))
 
@@ -89,36 +88,53 @@ class PDFBot:
             os.remove(filename)
 
     async def __txt_fix_handler__(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-        if not update.message.reply_to_message or not update.message.reply_to_message.document:
-            await update.message.reply_text("Please reply to a .txt file with /txt to fix Hindi encoding.")
+        if not update.message.reply_to_message:
+            await update.message.reply_text("❌ Please reply to a .txt file with /txt to fix Hindi encoding.")
+            return
+
+        # Check if the replied message is a document (file)
+        document = update.message.reply_to_message.document
+        if not document:
+            # Fallback for text messages that might contain Kruti Dev
+            text_content = update.message.reply_to_message.text
+            if not text_content:
+                await update.message.reply_text("❌ The message you replied to has no text or file.")
+                return
+            
+            from .hindi_fix import kruti_to_unicode
+            fixed_text = kruti_to_unicode(text_content)
+            await update.message.reply_text(f"✅ Fixed Hindi Text:\n\n{fixed_text}")
             return
         
-        doc = update.message.reply_to_message.document
-        if not doc.file_name.endswith(".txt"):
-            await update.message.reply_text("Only .txt files are supported for this command.")
+        if not document.file_name.lower().endswith(".txt"):
+            await update.message.reply_text("❌ Only .txt files are supported for this command.")
             return
 
         from .hindi_fix import kruti_to_unicode
-        
         await context.bot.send_chat_action(update.effective_chat.id, action=constants.ChatAction.TYPING)
-        file = await context.bot.get_file(doc.file_id)
-        file_path = os.path.join("PdfTxtBot", "Docs", f"fix_{update.effective_chat.id}_{doc.file_name}")
-        await file.download_to_drive(custom_path=file_path)
         
         try:
+            file = await context.bot.get_file(document.file_id)
+            os.makedirs(os.path.join("PdfTxtBot", "Docs"), exist_ok=True)
+            file_path = os.path.join("PdfTxtBot", "Docs", f"fix_{update.effective_chat.id}_{document.file_name}")
+            await file.download_to_drive(custom_path=file_path)
+            
             with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
                 content = f.read()
             
             fixed_content = kruti_to_unicode(content)
             
-            output_path = os.path.join("PdfTxtBot", "Docs", f"fixed_{doc.file_name}")
+            output_path = os.path.join("PdfTxtBot", "Docs", f"fixed_{document.file_name}")
             with open(output_path, "w", encoding="utf-8") as f:
                 f.write(fixed_content)
                 
-            await update.message.reply_document(document=open(output_path, "rb"), caption="Fixed Hindi Text File")
+            await update.message.reply_document(
+                document=open(output_path, "rb"), 
+                caption="✅ Fixed Hindi Text File (Kruti Dev to Unicode)"
+            )
             os.remove(output_path)
         except Exception as e:
-            await update.message.reply_text(f"Error processing file: {str(e)}")
+            await update.message.reply_text(f"❌ Error processing file: {str(e)}")
         finally:
-            if os.path.exists(file_path):
+            if 'file_path' in locals() and os.path.exists(file_path):
                 os.remove(file_path)
